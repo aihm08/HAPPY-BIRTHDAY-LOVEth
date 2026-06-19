@@ -144,37 +144,28 @@ button {
 </div> <!-- #letterPage -->
 <div id="letterPage">
   <div class="paper">
-    ...
+
+    <div class="date">July 27, 2026</div>
+
+    <div class="page-number" id="pageNum"></div>
+
+    <div class="title">
+      Hi love,
+    </div>
+
+    <div class="message" id="content"></div>
+
+    <div class="controls">
+      <button id="prevBtn" onclick="prevPage()">← Previous</button>
+      <button id="nextBtn" onclick="nextPage()">Next →</button>
+    </div>
+
+    <div class="signature">
+      love,<br>
+      mhia ♡
+    </div>
+
   </div>
-</div>
-
-<script>
-  // JavaScript mo
-</script>
-
-<div class="date">
-  July 27, 2026
-</div>
-
-<div class="page-number" id="pageNum">
-  Page 1 of 4
-</div>
-
-  <div class="title">
-    Hi love,
-  </div>
-
-<div class="message" id="content">
-</div>
-<div class="controls">
-  <button id="prevBtn" onclick="prevPage()">← Previous</button>
-  <button id="nextBtn" onclick="nextPage()">Next →</button>
-</div>
-  <div class="signature">
-    love,<br>
-    mhia ♡
-  </div>
-
 </div>
 <script>
 const pages = [
@@ -217,7 +208,8 @@ So here's to more birthdays, more memories, more laughs, more random moments, mo
 Happy Birthday, Love. 
 I love you so much, always and in all ways.🌸',
 
-`
+,
+
 One last thing.
 It's your birthday today.
 
@@ -238,7 +230,8 @@ placeholder="Write your birthday wish here..."></textarea>
 </button>
 
 <p id="wishMessage"></p>
-`
+,
+
 ];
 
   function saveWish() {

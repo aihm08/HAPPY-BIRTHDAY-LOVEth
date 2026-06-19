@@ -42,8 +42,8 @@ body {
   color: white;
   font-family: "Inter", sans-serif;
   overflow-y: auto;
-  <div id="stars"></div>
 }
+  <div id="stars"></div>
 
 /* PASSWORD SCREEN */
 #login {
@@ -161,6 +161,9 @@ button {
 
 <!-- PASSWORD -->
 <div id="login">
+  <button id="surpriseBtn" onclick="surpriseMe()">
+  ✨ Surprise
+  </button>
   <div class="box">
     <h1>Enter Password</h1>
     <input id="code" type="password" maxlength="4" placeholder="••••">
@@ -169,11 +172,9 @@ button {
   </div>
 </div>
 
+  
 <!-- LETTER -->
 <div id="letterPage">
-  <button id="surpriseBtn" onclick="randomSurprise()">
-✨ Surprise
-  </button>
   <div class="paper">
 
     <div class="date">July 27, 2026</div>

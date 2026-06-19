@@ -3,333 +3,400 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Love ❤️</title>
+<title>Message in a Bottle ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
-body{
-    margin:0;
-    padding:0;
-    font-family:Arial, sans-serif;
-    background:linear-gradient(to bottom,#87ceeb,#1e90ff);
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow-x:hidden;
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Dancing Script', cursive;
 }
 
-.container{
-    text-align:center;
-    padding:20px;
-}
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
-
-    <button id="playBtn" onclick="startExperience()">
-💖 Play Me
-</button>
-
-<audio id="bgMusic">
-    <source src="music.mp4" type="audio/mp4">
-</audio>
-
-    #letter{
-    display:none;
-    background:white;
-    max-width:800px;
-    padding:30px;
-    border-radius:20px;
-    line-height:2;
-    box-shadow:0 0 25px rgba(0,0,0,.2);
-
-    font-family:'Dancing Script', cursive;
-    font-size:28px;
-    }
-
-    <script>
-function createHeart(){
-    const heart = document.createElement("div");
-
-    heart.innerHTML = "💖";
-    heart.style.position = "fixed";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.top = "100vh";
-    heart.style.fontSize = "24px";
-    heart.style.pointerEvents = "none";
-
-    document.body.appendChild(heart);
-
-    let pos = 100;
-
-    const move = setInterval(() => {
-        pos--;
-
-        heart.style.top = pos + "vh";
-
-        if(pos < -10){
-            clearInterval(move);
-            heart.remove();
-        }
-    },40);
+/* 🌊 Ocean */
+.ocean {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #003b73, #00c6ff);
 }
 
-setInterval(createHeart,1000);
-</script>
-
-const letterText = `
-PASTE YOUR WHOLE LETTER HERE
-`;
-
-function typeWriter() {
-
-    let i = 0;
-
-    const target = document.getElementById("typedLetter");
-
-    const typing = setInterval(() => {
-
-        target.innerHTML += letterText.charAt(i);
-
-        i++;
-
-        if(i >= letterText.length){
-            clearInterval(typing);
-        }
-
-    },20);
-}
-            function startExperience(){
-
-    document.getElementById("bgMusic").play();
-
-    document.getElementById("playBtn").style.display = "none";
-
-    document.getElementById("letter").style.display = "block";
-
-    typeWriter();
-            }
+.wave {
+    position: absolute;
+    bottom: -90px;
+    width: 200%;
+    height: 200px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 45%;
+    animation: waveMove 12s linear infinite;
 }
 
-#bottle{
-    font-size:120px;
-    cursor:pointer;
-    animation:float 2s ease-in-out infinite;
+.wave:nth-child(2) {
+    opacity: 0.3;
+    animation-duration: 16s;
 }
 
-@keyframes float{
-    0%{transform:translateY(0);}
-    50%{transform:translateY(-15px);}
-    100%{transform:translateY(0);}
+@keyframes waveMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
-#instruction{
-    color:white;
-    font-size:20px;
-    margin-top:10px;
+/* 🍾 Bottle */
+.bottle {
+    position: absolute;
+    width: 120px;
+    height: 260px;
+    left: -150px;
+    bottom: 120px;
+    cursor: pointer;
+    animation: drift 8s ease-in-out forwards;
+    z-index: 5;
 }
 
-#letter{
-    display:none;
-    background:white;
-    max-width:800px;
-    padding:30px;
-    border-radius:20px;
-    text-align:left;
-    line-height:1.8;
-    box-shadow:0 0 20px rgba(0,0,0,0.2);
-    animation:fadeIn 1s ease;
+@keyframes drift {
+    0% { left: -150px; transform: rotate(-10deg); }
+    60% { transform: rotate(5deg); }
+    100% { left: 50%; transform: translateX(-50%) rotate(0deg); }
 }
 
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+.bottle-body {
+    width: 80px;
+    height: 180px;
+    background: rgba(255,255,255,0.25);
+    border: 2px solid rgba(255,255,255,0.8);
+    border-radius: 30px;
+    margin: 0 auto;
+    position: relative;
+    top: 40px;
 }
 
-h1{
-    text-align:center;
-    color:#ff4d88;
+.cork {
+    width: 40px;
+    height: 20px;
+    background: #b07a3f;
+    margin: 0 auto;
+    border-radius: 5px;
 }
 
-.signature{
-    text-align:right;
-    margin-top:30px;
-    font-weight:bold;
+/* 🌙 overlay */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: 1s;
+    pointer-events: none;
+}
+
+.overlay.show {
+    opacity: 1;
+}
+
+/* 📦 letter */
+.wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.wrapper.show {
+    opacity: 1;
+}
+
+.paper {
+    width: 380px;
+    background: rgba(255,255,255,0.95);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+
+    transform: scale(0.2) rotate(-5deg);
+    filter: blur(10px);
+    opacity: 0;
+    transition: all 1.2s ease;
+}
+
+.wrapper.show .paper {
+    transform: scale(1) rotate(0deg);
+    filter: blur(0);
+    opacity: 1;
+}
+
+#text {
+    font-size: 20px;
+    white-space: pre-wrap;
+    border-right: 2px solid #333;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* ✨ particles */
+.particle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: floatUp 3s linear forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-200px); opacity: 0; }
+}
+
+/* 💖 floating text */
+.float-text {
+    position: fixed;
+    font-size: 14px;
+    color: white;
+    animation: floatText 3s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes floatText {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-120px); opacity: 0; }
+}
+
+/* 🔘 done button */
+.done-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 20px;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+    display: none;
+    z-index: 20;
+}
+
+/* 📝 wish box */
+.wish-panel {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 20;
+}
+
+#wishInput {
+    width: 280px;
+    height: 100px;
+    border-radius: 12px;
+    border: none;
+    padding: 10px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 18px;
+    outline: none;
+    resize: none;
+}
+
+/* ⭐ stars */
+.star {
+    position: fixed;
+    font-size: 16px;
+    color: gold;
+    animation: fly 4s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes fly {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-400px) scale(0.2) rotate(180deg); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
 
-<div id="bottle" onclick="openLetter()">
-🍾
+    <div class="bottle" onclick="openBottle()">
+        <div class="cork"></div>
+        <div class="bottle-body"></div>
+    </div>
 </div>
 
-<p id="instruction">Click the bottle to read my letter 💌</p>
+<div class="overlay" id="overlay"></div>
 
-<div id="letter">
-
-<h1>🎂 Happy Birthday, Love ❤️</h1>
-
-<p>Hi love,</p>
-
-<p>
-First of all, HAPPY HAPPY BIRTHDAYYY LOVEE! 🥳❤️
-I hope u enjoy ur day and tahol ka muna bago mo basahin eme HAHAHAHSH.DE JOKE LNG I LOVE YOUUU!!
-</p>
-
-<p>
-Ang dami kong gustong sabihin pero hindi ko alam saan magsisimula.
-AHMM...I realized a lot of things, lalo na nung friends pa lang tayo.
-Looking back, The way you always made time and effort to talk to me and play with me.
-Kahit minsan hindi ako maayos kausap, walang kwenta ganon o bigla-bigla akong nawawala tapos babalik na parang walang nangyari,
-nandyan ka pa rin. Kinakausap mo pa rin ako and you still chose to stay.
-</p>
-
-<p>
-I'm really grateful for you.
-Thank you for being my pet, my best friend, duo, partner, kaaway minsan,
-at syempre, my love.
-Alam mo, nakikita ko lahat ng efforts mo kahit hindi ko man laging nasasabi.
-I love you so much, and I hope hindi mo iniisip na kulang yung love ko sayo
-just because ikaw yung unang nagsasabi ng "I love you" or "I miss you."
-Hindi man ako expressive minsan, pero I always love and miss you too.
-</p>
-
-<p>
-Please always remember na hindi kita pinili dahil convenient ka.
-I chose you because you make me feel safe.
-Ikaw yung taong gusto kong lapitan kapag okay ako at lalo na kapag hindi.
-You're not perfect, love, and alam kong may times na nag-ooverthink ka.
-Sana hindi mo sarilinin lahat ng nararamdaman mo.
-Wag mo laging isipin na ipagpapalit kita dahil lang sa mga nangyari sa past mo.
-We both have our own past, and I hope we continue learning from it instead
-of letting it affect what we have now.
-</p>
-
-<p>
-And love, sana if may problema ka, sabihin mo sakin.
-Partner mo ko eh.
-Gusto kong ako yung isa sa mga taong pwede mong takbuhan kapag may bumabagabag sayo.
-Hindi rin naman ako perfect, so if may nagagawa akong mali or may bagay na nakakasakit sayo,
-please tell me.
-I want us to be honest with each other.
-</p>
-
-<p>
-I don't want our relationship to be just another experience.
-I want this to last.
-Alam kong hindi magiging madali palagi.
-Magkakaroon tayo ng misunderstandings, doubts, tampuhan, at kung ano-ano pa.
-Pero sana kahit mahirap, piliin pa rin nating intindihin ang isa't isa.
-Sana kapag may problema, hindi tayo agad susuko.
-Instead, we'll choose to fix things together.
-</p>
-
-<p>
-Sa totoo lang, isa ka sa pinakamagandang bagay na nangyari sa buhay ko.
-You became one of my comfort people, one of my safe places,
-and one of the reasons why my days became brighter.
-Kahit simpleng usapan lang, kahit simpleng pangungulit mo,
-you always manage to make me smile.
-</p>
-
-<p>
-Thank you for every late-night conversation,
-every random update,
-every good morning and good night message,
-every reassurance,
-every effort,
-and every moment na pinili mo akong mahalin. (Ang cringe na noh pfft) pero continue..
-</p>
-
-<p>
-I hope this new chapter of your life brings you happiness,
-growth, peace of mind, and countless opportunities.
-I hope you achieve every dream you're working hard for.
-And whenever life gets difficult,
-I hope you remember that you don't have to face everything alone.
-I'm here.
-</p>
-
-<p>
-Pero for today, wag muna tayo maging emotional masyado HAHAHA.
-Birthday mo ngayon,
-so ang mission mo ay mag-enjoy,
-kumain nang marami,
-magpahinga,
-at maging masaya.
-Bawal mag-overthink today,
-birthday boy privilege yan. 😤🎂
-</p>
-
-<p>
-Thank you for loving me,
-for staying,
-and for always choosing me.
-Thank you for being you.
-Thank you for making my days better,
-kahit minsan ang kulit mo at ang wild mo HAHAHAHA sabihin mong hindi.
-</p>
-
-<p>
-I'm so proud of you and everything you've achieved so far.
-You deserve all the good things na meron ka ngayon
-at lahat ng blessings na darating pa.
-Sana maging mabait sayo ang buhay,
-and kapag hindi,
-nandito lang ako para lalo kang pahirapan eme. 😌
-</p>
-
-<p>
-Again, happy happy birthday, love. ❤️
-Enjoy your special day,
-make lots of memories,
-and don't forget to thank God for another year of your life.
-I love you so much,
-always and in all ways. 🌸
-</p>
-
-<p>
-And if there's one thing I want you to remember after reading this letter,
-it's that you are loved.
-More than you know.
-More than I can explain through words.
-No matter how many birthdays pass,
-no matter how much time goes by,
-I will always be grateful that our paths crossed.
-Meeting you was one of the best things that ever happened to me.
-</p>
-
-<p>
-So here's to more birthdays,
-more memories,
-more laughs,
-more random moments,
-more adventures,
-and hopefully,
-more years of us. ❤️
-</p>
-
-<div class="signature">
-Love always ❤️
+<div class="wrapper" id="wrapper">
+    <div class="paper">
+        <div id="text"></div>
+    </div>
 </div>
 
+<!-- 💌 wish UI -->
+<div class="wish-panel" id="wishPanel">
+    <textarea id="wishInput" placeholder="Write your wish for the stars..."></textarea>
+    <button onclick="sendWish()">Send it to the stars 🌠</button>
 </div>
-</div>
+
+<button class="done-btn" id="doneBtn" onclick="showWish()">Done Reading ❤️</button>
 
 <script>
-function openLetter(){
-    document.getElementById("bottle").style.display="none";
-    document.getElementById("instruction").style.display="none";
-    document.getElementById("letter").style.display="block";
+
+const message = `
+
+Hi love,
+
+First of all, HAPPY HAPPY BIRTHDAYYY LOVEE! 🥳❤️ I hope u enjoy ur day and tahol ka muna bago mo basahin HAHAHAHAH joke lng love youuuu birthday boy!
+Ang dami kong gustong sabihin pero hindi ko alam saan magsisimula. AHMM...I realized a lot of things, lalo na nung friends pa lang tayo. Hmmm.. Looking back, The way you always made time and effort to talk to me and play with me. Kahit minsan hindi ako maayos kausap, walang kwenta ganon o bigla bigla akong nawawala tapos babalik na parang walang nangyari, nandyan ka pa rin. Kinakausap mo pa rin ako and you still chose to stay.
+
+I'm really grateful for you love. Thank you for being my pet, my best friend, duo, partner, kaaway minsan, at syempre, my love. Alam mo love lagi kong sinasabi na nakikita ko lahat ng efforts mo kahit hindi ko laging nasasabi. Always remember that I love you so much, and I hope hindi mo iniisip na kulang yung love ko sayo just because ikaw yung unang nagsasabi ng "I love you" or "I miss you." Hindi man ako expressive minsan, pero I always love and miss you too.
+
+I chose you because you make me feel safe. Ikaw yung taong gusto kong lapitan kapag okay ako at lalo na kapag hindi. You're not perfect, love, and alam kong may times na nag-ooverthink ka. Sana hindi mo sarilinin lahat ng nararamdaman mo. Wag mo laging isipin na ipagpapalit kita dahil lang sa mga nangyari sa past mo. We both have our own past, and I hope we continue learning from it instead of letting it affect what we have now.
+
+And love, sana if may problema ka, sabihin mo sakin. Partner mo ko eh. Gusto kong ako yung isa sa mga taong pwede mong takbuhan kapag may bumabagabag sayo. Hindi rin naman ako perfect, so if may nagagawa akong mali or may bagay na nakakasakit sayo, please tell me. I want us to be honest with each other.
+
+I don't want our relationship to be just another experience. I want this to last. Alam kong hindi magiging madali palagi. Magkakaroon tayo ng misunderstandings, doubts, tampuhan, at kung ano ano pa. Pero sana kahit mahirap, piliin pa rin nating intindihin ang isa't isa. Sana kapag may problema, hindi tayo agad susuko. (Susuko? HAHAHAHAH) Instead, we'll choose to fix things together.
+Sa totoo lang, isa ka sa pinakamagandang bagay na nangyari sa buhay ko. Ang cringe huhu pero basta ganon, You became one of my comfort people, one of my safe places, and one of the reasons why my days became brighter. Kahit simpleng usapan lang, kahit simpleng pangungulit mo, you always manage to make me smile. You make ordinary days feel special without even trying.
+
+Thank you for every late night conversation, every random update, every good morning and good night message, every reassurance, every effort, and every moment na pinili mo akong mahalin. Ehe HAHAHAHA Those things may seem small, but they mean so much to me.
+
+Thank you for being patient with me during the times na mahirap akong intindihin. Thank you for staying even when things weren't always easy. Thank you for accepting the parts of me that I'm still learning to accept myself. Your presence in my life has been one of the greatest blessings I've ever received.
+
+I hope this new chapter of your life brings you happiness, growth, peace of mind, and countless opportunities. I hope you achieve every dream you're working hard for. I hope you continue becoming the amazing person that you already are. And whenever life gets difficult, I hope you remember that you don't have to face everything alone. I'm here.
+
+Pero for today, wag muna tayo maging emotional masyado HAHAHAH ang cringe na pero ganon tlga Birthday mo ngayon, so ang mission mo ay mag enjoy, kumain nang marami, magpahinga, at maging masaya. Bawal mag overthink today, birthday boy privilege yan.
+
+Thank you for loving me, for staying, and for always choosing me. Thank you for being you. Thank you for making my days better, kahit minsan ang kulit mo at wild ka.
+
+I'm so proud of you and everything you've achieved so far. You deserve all the good things na meron ka ngayon at lahat ng blessings na darating pa. Sana maging mabait sayo ang buhay, and kapag hindi, nandito lang ako para lalo kang pahirapan eme. 
+
+Again, happy happy birthday, love. 
+
+Enjoy your special day, make lots of memories, and don't forget to thank God for another year of your life. I love you so much, always and in all ways. 🌸
+
+And if there's one thing I want you to remember after reading this letter, it's that you are loved. More than you know. More than I can explain through words. No matter how many birthdays pass, no matter how much time goes by, I will always be grateful that our paths crossed. Meeting you was one of the best things that ever happened to me.
+
+So here's to more birthdays, more memories, more laughs, more random moments, more adventures, and hopefully, more years of us.
+
+Happy Birthday, Love. 
+I love you so much, always and in all ways. 🌸
+
+`;
+
+let i = 0;
+let started = false;
+
+/* ✍️ typing */
+function typeWriter() {
+    if (i < message.length) {
+        document.getElementById("text").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeWriter, 35);
+    } else {
+        document.getElementById("doneBtn").style.display = "block";
+    }
 }
+
+/* ✨ particles */
+function createParticle(x, y) {
+    const p = document.createElement("div");
+    p.classList.add("particle");
+    p.style.left = x + "px";
+    p.style.top = y + "px";
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 3000);
+}
+
+/* 💖 floating text */
+function createFloatText(x, y) {
+    const t = document.createElement("div");
+    t.classList.add("float-text");
+    t.innerText = "Happy Birthday Love 💖";
+    t.style.left = x + "px";
+    t.style.top = y + "px";
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 3000);
+}
+
+/* 🍾 open bottle */
+function openBottle() {
+    if (started) return;
+    started = true;
+
+    document.getElementById("overlay").classList.add("show");
+    document.getElementById("wrapper").classList.add("show");
+
+    for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+            createParticle(
+                window.innerWidth / 2 + (Math.random() * 100 - 50),
+                window.innerHeight / 2 + (Math.random() * 100 - 50)
+            );
+        }, i * 50);
+    }
+
+    for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+            createFloatText(
+                window.innerWidth / 2 + (Math.random() * 120 - 60),
+                window.innerHeight / 2 + (Math.random() * 80 - 40)
+            );
+        }, i * 300);
+    }
+
+    setTimeout(typeWriter, 900);
+}
+
+/* 💌 show wish panel */
+function showWish() {
+    document.getElementById("wishPanel").style.display = "flex";
+}
+
+/* 🌠 send wish -> stars */
+function sendWish() {
+    const text = document.getElementById("wishInput").value;
+    if (!text.trim()) return;
+
+    const rect = document.getElementById("wishInput").getBoundingClientRect();
+
+    for (let i = 0; i < text.length; i++) {
+        setTimeout(() => {
+            createStar(
+                rect.left + Math.random() * rect.width,
+                rect.top + Math.random() * rect.height
+            );
+        }, i * 40);
+    }
+
+    document.getElementById("wishPanel").style.display = "none";
+}
+
+/* ⭐ star */
+function createStar(x, y) {
+    const s = document.createElement("div");
+    s.classList.add("star");
+    s.innerHTML = "⭐";
+    s.style.left = x + "px";
+    s.style.top = y + "px";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 4000);
+}
+
 </script>
 
 </body>

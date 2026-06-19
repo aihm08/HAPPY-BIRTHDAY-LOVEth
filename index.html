@@ -151,58 +151,12 @@ button {
     Hi love,
   </div>
 
-  <div class="message">
-
-const pages = [
-
-`Hi love,
-
-First of all, HAPPY HAPPY BIRTHDAYYY LOVEE! 🥳❤️ I hope u enjoy ur day and tahol ka muna bago mo basahin HAHAHAHAH joke lng love youuuu birthday boy!
-
-Ang dami kong gustong sabihin pero hindi ko alam saan magsisimula. AHMM...I realized a lot of things, lalo na nung friends pa lang tayo. Hmmm.. Looking back, The way you always made time and effort to talk to me and play with me. Kahit minsan hindi ako maayos kausap, walang kwenta ganon o bigla bigla akong nawawala tapos babalik na parang walang nangyari, nandyan ka pa rin. Kinakausap mo pa rin ako and you still chose to stay.
-
-I'm really grateful for you love. Thank you for being my pet, my best friend, duo, partner, kaaway minsan, at syempre, my love. Alam mo love lagi kong sinasabi na nakikita ko lahat ng efforts mo kahit hindi ko laging nasasabi. Always remember that I love you so much, and I hope hindi mo iniisip na kulang yung love ko sayo just because ikaw yung unang nagsasabi ng "I love you" or "I miss you." Hindi man ako expressive minsan, pero I always love and miss you too.`,
-
-`I chose you because you make me feel safe. Ikaw yung taong gusto kong lapitan kapag okay ako at lalo na kapag hindi. You're not perfect, love, and alam kong may times na nag-ooverthink ka. Sana hindi mo sarilinin lahat ng nararamdaman mo. Wag mo laging isipin na ipagpapalit kita dahil lang sa mga nangyari sa past mo. We both have our own past, and I hope we continue learning from it instead of letting it affect what we have now.
-
-And love, sana if may problema ka, sabihin mo sakin. Partner mo ko eh. Gusto kong ako yung isa sa mga taong pwede mong takbuhan kapag may bumabagabag sayo. Hindi rin naman ako perfect, so if may nagagawa akong mali or may bagay na nakakasakit sayo, please tell me. I want us to be honest with each other.
-
-I don't want our relationship to be just another experience. I want this to last. Alam kong hindi magiging madali palagi. Magkakaroon tayo ng misunderstandings, doubts, tampuhan, at kung ano ano pa. Pero sana kahit mahirap, piliin pa rin nating intindihin ang isa't isa. Sana kapag may problema, hindi tayo agad susuko. (Susuko? HAHAHAHAH) Instead, we'll choose to fix things together.
-
-Sa totoo lang, isa ka sa pinakamagandang bagay na nangyari sa buhay ko. Ang cringe huhu pero basta ganon. You became one of my comfort people, one of my safe places, and one of the reasons why my days became brighter. Kahit simpleng usapan lang, kahit simpleng pangungulit mo, you always manage to make me smile. You make ordinary days feel special without even trying.`,
-
-`Thank you for every late night conversation, every random update, every good morning and good night message, every reassurance, every effort, and every moment na pinili mo akong mahalin. Ehe HAHAHAHA Those things may seem small, but they mean so much to me.
-
-Thank you for being patient with me during the times na mahirap akong intindihin. Thank you for staying even when things weren't always easy. Thank you for accepting the parts of me that I'm still learning to accept myself. Your presence in my life has been one of the greatest blessings I've ever received.
-
-I hope this new chapter of your life brings you happiness, growth, peace of mind, and countless opportunities. I hope you achieve every dream you're working hard for. I hope you continue becoming the amazing person that you already are. And whenever life gets difficult, I hope you remember that you don't have to face everything alone. I'm here.
-
-Pero for today, wag muna tayo maging emotional masyado HAHAHAH ang cringe na pero ganon tlga Birthday mo ngayon, so ang mission mo ay mag enjoy, kumain nang marami, magpahinga, at maging masaya. Bawal mag overthink today, birthday boy privilege yan.
-
-Thank you for loving me, for staying, and for always choosing me. Thank you for being you. Thank you for making my days better, kahit minsan ang kulit mo at wild ka.
-
-I'm so proud of you and everything you've achieved so far. You deserve all the good things na meron ka ngayon at lahat ng blessings na darating pa. Sana maging mabait sayo ang buhay, and kapag hindi, nandito lang ako para lalo kang pahirapan eme.
-
-Again, happy happy birthday, love.
-
-Enjoy your special day, make lots of memories, and don't forget to thank God for another year of your life. I love you so much, always and in all ways. 🌸
-
-And if there's one thing I want you to remember after reading this letter, it's that you are loved. More than you know. More than I can explain through words. No matter how many birthdays pass, no matter how much time goes by, I will always be grateful that our paths crossed. Meeting you was one of the best things that ever happened to me.
-
-So here's to more birthdays, more memories, more laughs, more random moments, more adventures, and hopefully, more years of us.
-
-Happy Birthday, Love.
-
-I love you so much, always and in all ways. 🌸
-
-love,
-mhia ♡`
-
-];
-    
-
-  </div>
-
+<div class="message" id="content">
+</div>
+<div class="controls">
+  <button onclick="prevPage()">← Previous</button>
+  <button onclick="nextPage()">Next →</button>
+</div>
   <div class="signature">
     love,<br>
     mhia ♡
@@ -210,15 +164,81 @@ mhia ♡`
 
 </div>
 <script>
+const pages = [
+`Page 1 Hi love,
+
+First of all, HAPPY HAPPY BIRTHDAYYY LOVEE! 🥳❤️ I hope u enjoy ur day and tahol ka muna bago mo basahin HAHAHAHAH joke lng love youuuu birthday boy!
+Ang dami kong gustong sabihin pero hindi ko alam saan magsisimula. AHMM...I realized a lot of things, lalo na nung friends pa lang tayo. Hmmm.. Looking back, The way you always made time and effort to talk to me and play with me. Kahit minsan hindi ako maayos kausap, walang kwenta ganon o bigla bigla akong nawawala tapos babalik na parang walang nangyari, nandyan ka pa rin. Kinakausap mo pa rin ako and you still chose to stay.
+
+I'm really grateful for you love. Thank you for being my pet, my best friend, duo, partner, kaaway minsan, at syempre, my love. Alam mo love lagi kong sinasabi na nakikita ko lahat ng efforts mo kahit hindi ko laging nasasabi. Always remember that I love you so much, and I hope hindi mo iniisip na kulang yung love ko sayo just because ikaw yung unang nagsasabi ng "I love you" or "I miss you." Hindi man ako expressive minsan, pero I always love and miss you too.
+
+I chose you because you make me feel safe. Ikaw yung taong gusto kong lapitan kapag okay ako at lalo na kapag hindi. You're not perfect, love, and alam kong may times na nag-ooverthink ka. Sana hindi mo sarilinin lahat ng nararamdaman mo. Wag mo laging isipin na ipagpapalit kita dahil lang sa mga nangyari sa past mo. We both have our own past, and I hope we continue learning from it instead of letting it affect what we have now.`,
+
+`Page 2 And love, sana if may problema ka, sabihin mo sakin. Partner mo ko eh. Gusto kong ako yung isa sa mga taong pwede mong takbuhan kapag may bumabagabag sayo. Hindi rin naman ako perfect, so if may nagagawa akong mali or may bagay na nakakasakit sayo, please tell me. I want us to be honest with each other.
+
+I don't want our relationship to be just another experience. I want this to last. Alam kong hindi magiging madali palagi. Magkakaroon tayo ng misunderstandings, doubts, tampuhan, at kung ano ano pa. Pero sana kahit mahirap, piliin pa rin nating intindihin ang isa't isa. Sana kapag may problema, hindi tayo agad susuko. (Susuko? HAHAHAHAH) Instead, we'll choose to fix things together.
+Sa totoo lang, isa ka sa pinakamagandang bagay na nangyari sa buhay ko. Ang cringe huhu pero basta ganon, You became one of my comfort people, one of my safe places, and one of the reasons why my days became brighter. Kahit simpleng usapan lang, kahit simpleng pangungulit mo, you always manage to make me smile. You make ordinary days feel special without even trying.
+
+Thank you for every late night conversation, every random update, every good morning and good night message, every reassurance, every effort, and every moment na pinili mo akong mahalin. Ehe HAHAHAHA Those things may seem small, but they mean so much to me.
+
+Thank you for being patient with me during the times na mahirap akong intindihin. Thank you for staying even when things weren't always easy. Thank you for accepting the parts of me that I'm still learning to accept myself. Your presence in my life has been one of the greatest blessings I've ever received.
+
+I hope this new chapter of your life brings you happiness, growth, peace of mind, and countless opportunities. I hope you achieve every dream you're working hard for. I hope you continue becoming the amazing person that you already are. And whenever life gets difficult, I hope you remember that you don't have to face everything alone. I'm here.`,
+
+`Page 3 I hope this new chapter of your life brings you happiness, growth, peace of mind, and countless opportunities. I hope you achieve every dream you're working hard for. I hope you continue becoming the amazing person that you already are. And whenever life gets difficult, I hope you remember that you don't have to face everything alone. I'm here.
+
+Pero for today, wag muna tayo maging emotional masyado HAHAHAH ang cringe na pero ganon tlga Birthday mo ngayon, so ang mission mo ay mag enjoy, kumain nang marami, magpahinga, at maging masaya. Bawal mag overthink today, birthday boy privilege yan.
+
+Thank you for loving me, for staying, and for always choosing me. Thank you for being you. Thank you for making my days better, kahit minsan ang kulit mo at wild ka.
+
+I'm so proud of you and everything you've achieved so far. You deserve all the good things na meron ka ngayon at lahat ng blessings na darating pa. Sana maging mabait sayo ang buhay, and kapag hindi, nandito lang ako para lalo kang pahirapan eme. 
+
+Again, happy happy birthday, love. 
+
+Enjoy your special day, make lots of memories, and don't forget to thank God for another year of your life. I love you so much, always and in all ways. 🌸
+
+And if there's one thing I want you to remember after reading this letter, it's that you are loved. More than you know. More than I can explain through words. No matter how many birthdays pass, no matter how much time goes by, I will always be grateful that our paths crossed. Meeting you was one of the best things that ever happened to me.
+
+So here's to more birthdays, more memories, more laughs, more random moments, more adventures, and hopefully, more years of us.
+
+Happy Birthday, Love. 
+I love you so much, always and in all ways. 🌸
+`
+];
+  let currentPage = 0;
+
+function showPage() {
+  const content = document.getElementById("content");
+
+  if(content){
+    content.innerHTML = pages[currentPage];
+  }
+}
+function nextPage() {
+  if(currentPage < pages.length - 1){
+    currentPage++;
+    showPage();
+  }
+}
+
+function prevPage() {
+  if(currentPage > 0){
+    currentPage--;
+    showPage();
+  }
+}
 function unlock() {
   const code = document.getElementById("code").value;
 
   if (code === "0727") {
-    document.getElementById("login").style.opacity = "0";
-    setTimeout(() => {
-      document.getElementById("login").style.display = "none";
-      document.getElementById("letterPage").style.display = "flex";
-    }, 700);
+  document.getElementById("login").style.opacity = "0";
+
+  setTimeout(() => {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("letterPage").style.display = "flex";
+
+    showPage();
+  }, 700);
   } else {
     alert("Wrong password.");
   }

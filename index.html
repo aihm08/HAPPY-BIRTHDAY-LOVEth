@@ -147,7 +147,7 @@ button {
   July 27, 2026
 </div>
 
-<div class="page-number">
+<div class="page-number" id="pageNum">
   Page 1 of 4
 </div>
 
@@ -208,7 +208,6 @@ So here's to more birthdays, more memories, more laughs, more random moments, mo
 Happy Birthday, Love. 
 I love you so much, always and in all ways. 🌸
 
-]
 
 `
 One last thing...
@@ -219,6 +218,9 @@ Before you leave,
 write down a birthday wish.
 
 I hope it comes true. ♡
+
+'
+];
 
 <br><br>
 
@@ -232,36 +234,31 @@ placeholder="Write your birthday wish here..."></textarea>
 </button>
 
 <p id="wishMessage"></p>
-`
-Wish locked successfully. ✨
-
-Don't tell anyone,
-or it might not come true.
 
   function saveWish() {
-    const wish =
-    document.getElementById("wishBox").value;
+  const wish = document.getElementById("wishBox").value;
 
-    if (wish.trim() === "") {
-        alert("✨ Write your wish first.");
-        return;
-    }
+  if (wish.trim() === "") {
+    alert("✨ Write your wish first.");
+    return;
+  }
 
-    localStorage.setItem("birthdayWish", wish);
+  localStorage.setItem("birthdayWish", wish);
 
-    document.getElementById("wishMessage").innerHTML =
-    "✨ Wish locked successfully. Don't tell anyone, or it might not come true. ♡";
+  document.getElementById("wishMessage").innerHTML =
+  "✨ Wish locked successfully. Don't tell anyone, or it might not come true. ♡";
+    
 }
-  
-  let currentPage = 0;
+
+let currentPage = 0;
 
 function showPage() {
     document.getElementById("content").innerText =
         pages[currentPage];
 
     document.getElementById("pageNum").innerText =
-        `Page ${currentPage + 1} of ${pages.length}`;
-
+  `Page ${currentPage + 1} of ${pages.length}`;
+  
     if (currentPage === pages.length - 1) {
         document.getElementById("nextBtn").innerText =
             "♡ End of Letter ♡";
@@ -275,7 +272,7 @@ pages[currentPage];
   if(content){
     content.innerHTML = pages[currentPage];
   }
-}
+
 function nextPage() {
   if(currentPage < pages.length - 1){
     currentPage++;
@@ -290,20 +287,15 @@ function prevPage() {
   }
 }
 function unlock() {
-  const code = document.getElementById("code").value;
+    const code = document.getElementById("code").value;
 
-  if (code === "0727") {
-  document.getElementById("login").style.opacity = "0";
-
-  setTimeout(() => {
-    document.getElementById("login").style.display = "none";
-    document.getElementById("letterPage").style.display = "flex";
-
-    showPage();
-  }, 700);
-  } else {
-    alert("Wrong password.");
-  }
+    if (code === "0727") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("letterPage").style.display = "flex";
+        showPage();
+    } else {
+        alert("Wrong password.");
+    }
 }
 </script>
 

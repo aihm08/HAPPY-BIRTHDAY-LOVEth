@@ -227,7 +227,7 @@ I hope it comes true. ♡
 </button>
 
 <p id="wishMessage"></p>`
-`
+`,
 <div style="text-align:center;">
 
 <h2>🫙 Wish Jar</h2>
@@ -264,18 +264,6 @@ Tap the button below to see the wish you made today. ✨
 ];
 
   function saveWish() {
-  const savedWish = localStorage.getItem("birthdayWish");
-  const box = document.getElementById("savedWishDisplay");
-
-  if (savedWish) {
-    box.innerHTML = `
-      <p>🌸 Your Birthday Wish:</p>
-      <p>${savedWish}</p>
-    `;
-  } else {
-    box.innerHTML = "🫙 The wish jar is empty.";
-  }
-    }
   const wish = document.getElementById("wishBox").value;
 
   if (wish.trim() === "") {
@@ -287,6 +275,20 @@ Tap the button below to see the wish you made today. ✨
 
   document.getElementById("wishMessage").innerHTML =
     "✨ Wish locked successfully. Don't tell anyone, or it might not come true. ♡";
+  }
+
+  function loadWish() {
+  const savedWish = localStorage.getItem("birthdayWish");
+  const box = document.getElementById("savedWishDisplay");
+
+  if (savedWish) {
+    box.innerHTML = `
+      <p>🌸 Your Birthday Wish:</p>
+      <p>${savedWish}</p>
+    `;
+  } else {
+    box.innerHTML = "🫙 The wish jar is empty.";
+  }
   }
 
 let currentPage = 0;

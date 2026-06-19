@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You ❤️</title>
+<title>Birthday Letter</title>
 
 <style>
 body {
@@ -11,24 +11,23 @@ body {
     height: 100vh;
     overflow: hidden;
 
-    background: linear-gradient(135deg, #cfe9ff, #ffffff);
     display: flex;
     justify-content: center;
     align-items: center;
 
-    font-family: "Georgia", serif;
+    background: linear-gradient(135deg, #cfe9ff, #ffffff);
+    font-family: Georgia, serif;
 }
 
 /* ✉️ ENVELOPE */
 .envelope {
-    width: 280px;
-    height: 180px;
-    position: relative;
-
+    width: 300px;
+    height: 200px;
     background: #ffffff;
-    border: 2px solid #bcdfff;
+    border: 2px solid #a9d6ff;
     border-radius: 10px;
-
+    position: relative;
+    cursor: pointer;
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
@@ -38,7 +37,6 @@ body {
     width: 100%;
     height: 50%;
     background: #d9efff;
-
     clip-path: polygon(0 0, 100% 0, 50% 100%);
     transform-origin: top;
     transition: transform 0.8s ease;
@@ -48,100 +46,27 @@ body {
     transform: rotateX(180deg);
 }
 
-/* 🔘 BUTTON */
-button {
+.hint {
     position: absolute;
-    bottom: -70px;
-    left: 50%;
-    transform: translateX(-50%);
-
-    padding: 12px 25px;
-    border: none;
-    border-radius: 25px;
-
-    background: #7ec8ff;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    bottom: -40px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #2f5f8f;
 }
 
-button:hover {
-    background: #4faeff;
-}
-
-/* 💌 LETTER (UPDATED MANLY SOFT BLUE STYLE) */
-.letter {
-    position: fixed;
-    width: 430px;
-    max-height: 70vh;
-
-    background: linear-gradient(135deg, #d9efff, #f5fbff);
-    border: 1px solid #a9d6ff;
-
-    border-radius: 14px;
-    padding: 28px;
-
-    box-shadow: 0 25px 60px rgba(0,0,0,0.18);
-
-    opacity: 0;
-    transform: scale(0.5);
-    transition: all 0.9s ease;
-
-    overflow-y: auto;
-
-    color: #1f3b57; /* deep calm blue text */
-}
-
-.letter h2 {
-    color: #1a4d7a;
-    margin-bottom: 15px;
-}
-
-.letter.show {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* ✨ SLOW PARTICLES */
-.particle {
-    position: absolute;
-    font-size: 12px;
-    color: #4faeff;
-    font-weight: 500;
-    white-space: nowrap;
-    pointer-events: none;
-
-    animation: floatUp 4.5s ease-in-out forwards;
-}
-
-@keyframes floatUp {
-    0% {
-        transform: translateY(0) scale(0.9);
-        opacity: 0;
-    }
-    20% { opacity: 1; }
-    100% {
-        transform: translateY(-180px) scale(1);
-        opacity: 0;
-    }
-}
-
-/* 🐶 CHIBI DOG */
+/* 🐶 DOG */
 .dog {
     position: absolute;
     bottom: 20px;
     right: 20px;
 
-    width: 100px;
-    height: 100px;
-
-    background: #fff;
+    width: 90px;
+    height: 90px;
+    background: white;
     border-radius: 50%;
 
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-
     animation: floatDog 3s ease-in-out infinite;
 }
 
@@ -149,11 +74,11 @@ button:hover {
 .dog::after {
     content: "";
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     background: #ffd6e0;
     border-radius: 50%;
-    top: -8px;
+    top: -6px;
 }
 
 .dog::before { left: 10px; }
@@ -161,23 +86,23 @@ button:hover {
 
 .eye {
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     background: #333;
     border-radius: 50%;
-    top: 38px;
+    top: 35px;
 }
 
-.eye.left { left: 28px; }
-.eye.right { right: 28px; }
+.eye.left { left: 25px; }
+.eye.right { right: 25px; }
 
 .nose {
     position: absolute;
-    width: 8px;
-    height: 6px;
+    width: 7px;
+    height: 5px;
     background: pink;
     border-radius: 50%;
-    top: 52px;
+    top: 48px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -187,26 +112,58 @@ button:hover {
     50% { transform: translateY(-10px); }
 }
 
-/* ✨ HINT */
-.hint {
-    position: absolute;
-    top: 60px;
-    font-size: 18px;
-    color: #4a90e2;
-    animation: floatHint 1.8s infinite;
+/* 💌 LETTER (UPDATED DESIGN) */
+.letter {
+    position: fixed;
+    width: 90%;
+    max-width: 750px;
+    max-height: 75vh;
+
+    background: linear-gradient(135deg, #cfe9ff, #f4fbff);
+
+    border: 1px solid rgba(120, 180, 255, 0.6);
+    border-radius: 18px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.15),
+        inset 0 0 25px rgba(255,255,255,0.6);
+
+    color: #1f3b57;
+    line-height: 1.8;
+
+    opacity: 0;
+    transform: scale(0.6);
+    transition: all 0.9s ease;
+
+    overflow-y: auto;
+    white-space: pre-line;
 }
 
-@keyframes floatHint {
-    0%,100% { transform: translateY(0); opacity: 0.8; }
-    50% { transform: translateY(-8px); opacity: 1; }
+.letter::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    pointer-events: none;
+
+    background: radial-gradient(
+        circle at top left,
+        rgba(255,255,255,0.6),
+        transparent 60%
+    );
+}
+
+.letter.show {
+    opacity: 1;
+    transform: scale(1);
 }
 
 </style>
 </head>
 
 <body>
-
-<div class="hint">✨ Click the button to open your letter</div>
 
 <!-- 🐶 DOG -->
 <div class="dog">
@@ -216,23 +173,18 @@ button:hover {
 </div>
 
 <!-- ✉️ ENVELOPE -->
-<div class="envelope" id="envelope">
+<div class="envelope" id="envelope" onclick="openLetter()">
     <div class="flap"></div>
-
-    <button onclick="openLetter()">Open Letter 💌</button>
+    <div class="hint">Click to open letter</div>
 </div>
 
-<!-- 💌 LETTER -->
+<!-- 💌 LETTER (YOUR ORIGINAL TEXT - UNCHANGED) -->
 <div class="letter" id="letter">
-    <h2>🎂 Happy Birthday, Love ❤️</h2>
 
-    <p>Hi love,</p>
-
-    <p>
-    
 Hi love,
 
 First of all, HAPPY HAPPY BIRTHDAYYY LOVEE! 🥳❤️ I hope u enjoy ur day and tahol ka muna bago mo basahin HAHAHAHAH joke lng love youuuu birthday boy!
+
 Ang dami kong gustong sabihin pero hindi ko alam saan magsisimula. AHMM...I realized a lot of things, lalo na nung friends pa lang tayo. Hmmm.. Looking back, The way you always made time and effort to talk to me and play with me. Kahit minsan hindi ako maayos kausap, walang kwenta ganon o bigla bigla akong nawawala tapos babalik na parang walang nangyari, nandyan ka pa rin. Kinakausap mo pa rin ako and you still chose to stay.
 
 I'm really grateful for you love. Thank you for being my pet, my best friend, duo, partner, kaaway minsan, at syempre, my love. Alam mo love lagi kong sinasabi na nakikita ko lahat ng efforts mo kahit hindi ko laging nasasabi. Always remember that I love you so much, and I hope hindi mo iniisip na kulang yung love ko sayo just because ikaw yung unang nagsasabi ng "I love you" or "I miss you." Hindi man ako expressive minsan, pero I always love and miss you too.
@@ -242,6 +194,7 @@ I chose you because you make me feel safe. Ikaw yung taong gusto kong lapitan ka
 And love, sana if may problema ka, sabihin mo sakin. Partner mo ko eh. Gusto kong ako yung isa sa mga taong pwede mong takbuhan kapag may bumabagabag sayo. Hindi rin naman ako perfect, so if may nagagawa akong mali or may bagay na nakakasakit sayo, please tell me. I want us to be honest with each other.
 
 I don't want our relationship to be just another experience. I want this to last. Alam kong hindi magiging madali palagi. Magkakaroon tayo ng misunderstandings, doubts, tampuhan, at kung ano ano pa. Pero sana kahit mahirap, piliin pa rin nating intindihin ang isa't isa. Sana kapag may problema, hindi tayo agad susuko. (Susuko? HAHAHAHAH) Instead, we'll choose to fix things together.
+
 Sa totoo lang, isa ka sa pinakamagandang bagay na nangyari sa buhay ko. Ang cringe huhu pero basta ganon, You became one of my comfort people, one of my safe places, and one of the reasons why my days became brighter. Kahit simpleng usapan lang, kahit simpleng pangungulit mo, you always manage to make me smile. You make ordinary days feel special without even trying.
 
 Thank you for every late night conversation, every random update, every good morning and good night message, every reassurance, every effort, and every moment na pinili mo akong mahalin. Ehe HAHAHAHA Those things may seem small, but they mean so much to me.
@@ -254,9 +207,9 @@ Pero for today, wag muna tayo maging emotional masyado HAHAHAH ang cringe na per
 
 Thank you for loving me, for staying, and for always choosing me. Thank you for being you. Thank you for making my days better, kahit minsan ang kulit mo at wild ka.
 
-I'm so proud of you and everything you've achieved so far. You deserve all the good things na meron ka ngayon at lahat ng blessings na darating pa. Sana maging mabait sayo ang buhay, and kapag hindi, nandito lang ako para lalo kang pahirapan eme. 
+I'm so proud of you and everything you've achieved so far. You deserve all the good things na meron ka ngayon at lahat ng blessings na darating pa. Sana maging mabait sayo ang buhay, and kapag hindi, nandito lang ako para lalo kang pahirapan eme.
 
-Again, happy happy birthday, love. 
+Again, happy happy birthday, love.
 
 Enjoy your special day, make lots of memories, and don't forget to thank God for another year of your life. I love you so much, always and in all ways. 🌸
 
@@ -264,51 +217,19 @@ And if there's one thing I want you to remember after reading this letter, it's 
 
 So here's to more birthdays, more memories, more laughs, more random moments, more adventures, and hopefully, more years of us.
 
-Happy Birthday, Love. 
-I love you so much, always and in all ways. 🌸
+<strong>Happy Birthday, Love.</strong><br>
+<strong>I love you so much, always and in all ways.</strong>
 
-    </p>
-
-    <p><strong>Happy Birthday, Love 🎂❤️</strong></p>
 </div>
 
 <script>
-
-let opened = false;
-
-/* ✉️ OPEN ENVELOPE */
 function openLetter() {
-    if (opened) return;
-    opened = true;
-
     document.getElementById("envelope").classList.add("open");
-
-    burstParticles();
 
     setTimeout(() => {
         document.getElementById("letter").classList.add("show");
     }, 800);
 }
-
-/* ✨ SLOW TEXT PARTICLES */
-function burstParticles() {
-    const messages = ["happy birthday love", "i love you", "❤️"];
-
-    for (let i = 0; i < 25; i++) {
-        const p = document.createElement("div");
-        p.classList.add("particle");
-
-        p.innerText = messages[Math.floor(Math.random() * messages.length)];
-
-        p.style.left = (window.innerWidth/2 + (Math.random()*140 - 70)) + "px";
-        p.style.top = (window.innerHeight/2 + (Math.random()*100 - 50)) + "px";
-
-        document.body.appendChild(p);
-
-        setTimeout(() => p.remove(), 6000);
-    }
-}
-
 </script>
 
 </body>

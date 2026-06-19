@@ -7,12 +7,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
 <style>
+  #stars{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, white, transparent),
+    radial-gradient(1.5px 1.5px at 100px 80px, white, transparent),
+    radial-gradient(2px 2px at 250px 150px, white, transparent),
+    radial-gradient(1px 1px at 400px 200px, white, transparent),
+    radial-gradient(2px 2px at 600px 100px, white, transparent);
+  background-repeat: repeat;
+  background-size: 700px 400px;
+  animation: twinkle 8s linear infinite;
+}
+
+@keyframes twinkle{
+  0%{opacity:.5;}
+  50%{opacity:1;}
+  100%{opacity:.5;}
+}
+  #surpriseBtn{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50px;
+  z-index: 999;
+  }
+  
 body {
   margin: 0;
   background: #000;
   color: white;
   font-family: "Inter", sans-serif;
   overflow-y: auto;
+  <div id="stars"></div>
 }
 
 /* PASSWORD SCREEN */
@@ -141,6 +171,9 @@ button {
 
 <!-- LETTER -->
 <div id="letterPage">
+  <button id="surpriseBtn" onclick="randomSurprise()">
+✨ Surprise
+  </button>
   <div class="paper">
 
     <div class="date">July 27, 2026</div>
@@ -506,6 +539,21 @@ function unlock() {
     element.style.display = "none";
   }
   }
+  function surpriseMe() {
+  const surprises = [
+    "💙 Virtual hug sent!",
+    "🌸 I miss you lovee.",
+    "🐶 Tahol muna HAHAHA.",
+    "💋 I want kiss love.",
+    "🌙 Always sleepy.",
+    "💌 This website was made for my fav pet.",
+    "⭐ Make a wish right now."
+  ];
+
+  alert(
+    surprises[Math.floor(Math.random() * surprises.length)]
+  );
+      }
 </script>
 
 </body>

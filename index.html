@@ -11,7 +11,7 @@
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
   background-image:
     radial-gradient(2px 2px at 20px 30px, white, transparent),
     radial-gradient(1.5px 1.5px at 100px 80px, white, transparent),
@@ -53,7 +53,7 @@
   opacity: 0.8;
   transform: rotate(45deg);
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
   animation: shoot 1s linear forwards;
 }
 
@@ -609,21 +609,22 @@ document.addEventListener("click", function(e) {
   const star = document.createElement("div");
   star.classList.add("shooting-star");
 
-  // random position
-  star.style.top = Math.random() * window.innerHeight + "px";
-  star.style.left = Math.random() * window.innerWidth + "px";
+  const startX = Math.random() * window.innerWidth;
+  const startY = Math.random() * window.innerHeight;
+
+  star.style.left = startX + "px";
+  star.style.top = startY + "px";
+
+  const duration = Math.random() * 0.8 + 0.6;
+
+  star.style.animationDuration = duration + "s";
 
   document.body.appendChild(star);
 
   setTimeout(() => {
     star.remove();
-  }, 1000);
-}
-
-// repeat stars every few seconds
-setInterval(() => {
-  createShootingStar();
-}, 800);
+  }, duration * 1000);
+  }
 </script>
 
 </body>

@@ -625,6 +625,11 @@ document.addEventListener("click", function(e) {
     star.remove();
   }, duration * 1000);
   }
+  setInterval(() => {
+  if (Math.random() > 0.5) {
+    createShootingStar();
+  }
+}, 1200);
 </script>
 
 </body>

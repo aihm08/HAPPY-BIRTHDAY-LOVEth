@@ -45,6 +45,29 @@
     transform: translateY(-20px) scale(1.5);
   }
 }
+  .shooting-star {
+  position: fixed;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(white, transparent);
+  opacity: 0.8;
+  transform: rotate(45deg);
+  pointer-events: none;
+  z-index: 0;
+  animation: shoot 1s linear forwards;
+}
+
+@keyframes shoot {
+  from {
+    transform: translate(0, 0) rotate(45deg);
+    opacity: 1;
+  }
+  to {
+    transform: translate(300px, 300px) rotate(45deg);
+    opacity: 0;
+  }
+}
+  
 body {
   margin: 0;
   background: #000;
@@ -582,6 +605,25 @@ document.addEventListener("click", function(e) {
 
   setTimeout(() => star.remove(), 1000);
 });
+  function createShootingStar() {
+  const star = document.createElement("div");
+  star.classList.add("shooting-star");
+
+  // random position
+  star.style.top = Math.random() * window.innerHeight + "px";
+  star.style.left = Math.random() * window.innerWidth + "px";
+
+  document.body.appendChild(star);
+
+  setTimeout(() => {
+    star.remove();
+  }, 1000);
+}
+
+// repeat stars every few seconds
+setInterval(() => {
+  createShootingStar();
+}, 800);
 </script>
 
 </body>

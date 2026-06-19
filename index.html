@@ -339,22 +339,8 @@ You matter to me more than words can explain. Thank you for being you.
 <div style="text-align:center;">
 
 <h2>🎂 Until Your Next Birthday</h2>
+
 <p id="countdown" style="font-size:22px;"></p>
-
-(function () {
-  const today = new Date();
-  const next = new Date(today.getFullYear(), 6, 27); // July = month 6
-
-  if (today > next) {
-    next.setFullYear(next.getFullYear() + 1);
-  }
-
-  const diff = Math.ceil((next - today) / (1000 * 60 * 60 * 24));
-  document.getElementById("countdown").innerHTML =
-    diff + " days left until your next birthday. 🤍";
-})();
-
-</div>
 `,
   
 `
@@ -388,6 +374,10 @@ I love you, always and in all ways. ♡
 `
 ];
 
+  <button onclick="alert('🤍 I love you. And if you ever revisit this page years from now, know that I smiled while making it just for you.')">
+  🌙 One Last Secret
+</button>
+
   function saveWish() {
   const wish = document.getElementById("wishBox").value;
 
@@ -405,7 +395,7 @@ I love you, always and in all ways. ♡
   function loadWish() {
   const savedWish = localStorage.getItem("birthdayWish");
   const box = document.getElementById("savedWishDisplay");
-  }
+
   if (savedWish) {
     box.innerHTML = `
       <p>🌸 Your Birthday Wish:</p>
@@ -413,6 +403,7 @@ I love you, always and in all ways. ♡
     `;
   } else {
     box.innerHTML = "🫙 The wish jar is empty.";
+  }
   }
     function updateCountdown() {
   const today = new Date();
@@ -423,18 +414,25 @@ I love you, always and in all ways. ♡
   }
 
   const diff = Math.ceil((next - today) / (1000 * 60 * 60 * 24));
-  document.getElementById("countdown").textContent =
-    diff + " days left until your next birthday. 🤍";
-   }
+
+  const countdown = document.getElementById("countdown");
+  if (countdown) {
+    countdown.textContent =
+      diff + " days left until your next birthday. 🤍";
+  }
+    }
   
 let currentPage = 0;
   
 function showPage() {
-    document.getElementById("content").innerHTML = pages[currentPage];
-    updateCountdown();
+    function showPage() {
+  document.getElementById("content").innerHTML = pages[currentPage];
 
-    document.getElementById("pageNum").innerText =
-        `Page ${currentPage + 1} of ${pages.length}`;
+  updateCountdown();
+
+  document.getElementById("pageNum").innerText =
+    `Page ${currentPage + 1} of ${pages.length}`;
+}
 
     document.getElementById("nextBtn").innerText =
         currentPage === pages.length - 1

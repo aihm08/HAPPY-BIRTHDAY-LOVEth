@@ -2,189 +2,180 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Letter</title>
+<title>For You ❤️</title>
+
+<!-- Romantic font -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 body {
-    margin: 0;
-    height: 100vh;
-    overflow: hidden;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: linear-gradient(135deg, #cfe9ff, #ffffff);
-    font-family: Georgia, serif;
+  margin: 0;
+  background: black;
+  color: white;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
 }
 
-/* ✉️ ENVELOPE */
+/* FLOATING HEARTS */
+.heart-bg {
+  position: absolute;
+  color: rgba(255,255,255,0.15);
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(100vh); opacity: 0; }
+  50% { opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* LOCK SCREEN */
+#lockScreen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.glowHeart {
+  font-size: 70px;
+  animation: glow 1.5s infinite alternate;
+  margin-bottom: 10px;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px white; transform: scale(1); }
+  to { text-shadow: 0 0 25px white; transform: scale(1.1); }
+}
+
+input {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+  font-size: 18px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: white;
+}
+
+/* ENVELOPE SCREEN */
+#envelopeScreen {
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* ENVELOPE */
 .envelope {
-    width: 300px;
-    height: 200px;
-    background: #ffffff;
-    border: 2px solid #a9d6ff;
-    border-radius: 10px;
-    position: relative;
-    cursor: pointer;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  width: 220px;
+  height: 140px;
+  background: #777;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 
-.flap {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 50%;
-    background: #d9efff;
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    transform-origin: top;
-    transition: transform 0.8s ease;
+.envelope:hover {
+  transform: scale(1.05);
 }
 
-.envelope.open .flap {
-    transform: rotateX(180deg);
+/* flap */
+.envelope:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-bottom: 70px solid #999;
 }
 
-.hint {
-    position: absolute;
-    bottom: -40px;
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-    color: #2f5f8f;
+/* LETTER */
+#letter {
+  display: none;
+  background: #fff;
+  color: #111;
+  width: 320px;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 20px;
+  animation: slideUp 1s ease;
+  font-family: 'Inter', sans-serif;
 }
 
-/* 🐶 DOG */
-.dog {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-
-    width: 90px;
-    height: 90px;
-    background: white;
-    border-radius: 50%;
-
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    animation: floatDog 3s ease-in-out infinite;
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
-.dog::before,
-.dog::after {
-    content: "";
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    background: #ffd6e0;
-    border-radius: 50%;
-    top: -6px;
+.date {
+  font-size: 13px;
+  margin-bottom: 10px;
+  opacity: 0.7;
 }
 
-.dog::before { left: 10px; }
-.dog::after { right: 10px; }
-
-.eye {
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    background: #333;
-    border-radius: 50%;
-    top: 35px;
+.signature {
+  margin-top: 20px;
+  text-align: right;
+  font-style: italic;
 }
 
-.eye.left { left: 25px; }
-.eye.right { right: 25px; }
-
-.nose {
-    position: absolute;
-    width: 7px;
-    height: 5px;
-    background: pink;
-    border-radius: 50%;
-    top: 48px;
-    left: 50%;
-    transform: translateX(-50%);
+.title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 28px;
 }
 
-@keyframes floatDog {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+/* CONFETTI */
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: white;
+  animation: fall linear forwards;
 }
 
-/* 💌 LETTER (UPDATED DESIGN) */
-.letter {
-    position: fixed;
-    width: 90%;
-    max-width: 750px;
-    max-height: 75vh;
-
-    background: linear-gradient(135deg, #cfe9ff, #f4fbff);
-
-    border: 1px solid rgba(120, 180, 255, 0.6);
-    border-radius: 18px;
-
-    padding: 35px;
-
-    box-shadow:
-        0 25px 60px rgba(0,0,0,0.15),
-        inset 0 0 25px rgba(255,255,255,0.6);
-
-    color: #1f3b57;
-    line-height: 1.8;
-
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
     opacity: 0;
-    transform: scale(0.6);
-    transition: all 0.9s ease;
-
-    overflow-y: auto;
-    white-space: pre-line;
+  }
 }
-
-.letter::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 18px;
-    pointer-events: none;
-
-    background: radial-gradient(
-        circle at top left,
-        rgba(255,255,255,0.6),
-        transparent 60%
-    );
-}
-
-.letter.show {
-    opacity: 1;
-    transform: scale(1);
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- 🐶 DOG -->
-<div class="dog">
-    <div class="eye left"></div>
-    <div class="eye right"></div>
-    <div class="nose"></div>
+<!-- LOCK -->
+<div id="lockScreen">
+  <div class="glowHeart">🖤</div>
+  <p>Enter the 4-digit code</p>
+  <input id="code" maxlength="4" type="password">
+  <button onclick="unlock()">Unlock</button>
 </div>
 
-<!-- ✉️ ENVELOPE -->
-<div class="envelope" id="envelope" onclick="openLetter()">
-    <div class="flap"></div>
-    <div class="hint">Click to open letter</div>
-</div>
+<!-- ENVELOPE -->
+<div id="envelopeScreen">
+  <div class="envelope" onclick="openLetter()"></div>
 
-<!-- 💌 LETTER (YOUR ORIGINAL TEXT - UNCHANGED) -->
-<div class="letter" id="letter">
+  <div id="letter">
+    <div class="date">July 27</div>
+    <div class="title">My Love,</div>
 
+    <p>
+      
 Hi love,
 
 First of all, HAPPY HAPPY BIRTHDAYYY LOVEE! 🥳❤️ I hope u enjoy ur day and tahol ka muna bago mo basahin HAHAHAHAH joke lng love youuuu birthday boy!
-
 Ang dami kong gustong sabihin pero hindi ko alam saan magsisimula. AHMM...I realized a lot of things, lalo na nung friends pa lang tayo. Hmmm.. Looking back, The way you always made time and effort to talk to me and play with me. Kahit minsan hindi ako maayos kausap, walang kwenta ganon o bigla bigla akong nawawala tapos babalik na parang walang nangyari, nandyan ka pa rin. Kinakausap mo pa rin ako and you still chose to stay.
 
 I'm really grateful for you love. Thank you for being my pet, my best friend, duo, partner, kaaway minsan, at syempre, my love. Alam mo love lagi kong sinasabi na nakikita ko lahat ng efforts mo kahit hindi ko laging nasasabi. Always remember that I love you so much, and I hope hindi mo iniisip na kulang yung love ko sayo just because ikaw yung unang nagsasabi ng "I love you" or "I miss you." Hindi man ako expressive minsan, pero I always love and miss you too.
@@ -194,7 +185,6 @@ I chose you because you make me feel safe. Ikaw yung taong gusto kong lapitan ka
 And love, sana if may problema ka, sabihin mo sakin. Partner mo ko eh. Gusto kong ako yung isa sa mga taong pwede mong takbuhan kapag may bumabagabag sayo. Hindi rin naman ako perfect, so if may nagagawa akong mali or may bagay na nakakasakit sayo, please tell me. I want us to be honest with each other.
 
 I don't want our relationship to be just another experience. I want this to last. Alam kong hindi magiging madali palagi. Magkakaroon tayo ng misunderstandings, doubts, tampuhan, at kung ano ano pa. Pero sana kahit mahirap, piliin pa rin nating intindihin ang isa't isa. Sana kapag may problema, hindi tayo agad susuko. (Susuko? HAHAHAHAH) Instead, we'll choose to fix things together.
-
 Sa totoo lang, isa ka sa pinakamagandang bagay na nangyari sa buhay ko. Ang cringe huhu pero basta ganon, You became one of my comfort people, one of my safe places, and one of the reasons why my days became brighter. Kahit simpleng usapan lang, kahit simpleng pangungulit mo, you always manage to make me smile. You make ordinary days feel special without even trying.
 
 Thank you for every late night conversation, every random update, every good morning and good night message, every reassurance, every effort, and every moment na pinili mo akong mahalin. Ehe HAHAHAHA Those things may seem small, but they mean so much to me.
@@ -207,9 +197,9 @@ Pero for today, wag muna tayo maging emotional masyado HAHAHAH ang cringe na per
 
 Thank you for loving me, for staying, and for always choosing me. Thank you for being you. Thank you for making my days better, kahit minsan ang kulit mo at wild ka.
 
-I'm so proud of you and everything you've achieved so far. You deserve all the good things na meron ka ngayon at lahat ng blessings na darating pa. Sana maging mabait sayo ang buhay, and kapag hindi, nandito lang ako para lalo kang pahirapan eme.
+I'm so proud of you and everything you've achieved so far. You deserve all the good things na meron ka ngayon at lahat ng blessings na darating pa. Sana maging mabait sayo ang buhay, and kapag hindi, nandito lang ako para lalo kang pahirapan eme. 
 
-Again, happy happy birthday, love.
+Again, happy happy birthday, love. 
 
 Enjoy your special day, make lots of memories, and don't forget to thank God for another year of your life. I love you so much, always and in all ways. 🌸
 
@@ -217,18 +207,58 @@ And if there's one thing I want you to remember after reading this letter, it's 
 
 So here's to more birthdays, more memories, more laughs, more random moments, more adventures, and hopefully, more years of us.
 
-<strong>Happy Birthday, Love.</strong><br>
-<strong>I love you so much, always and in all ways.</strong>
+Happy Birthday, Love. 
+I love you so much, always and in all ways. 🌸
 
+        <p></p>
+
+
+    <div class="signature">love mhia</div>
+  </div>
 </div>
 
 <script>
-function openLetter() {
-    document.getElementById("envelope").classList.add("open");
+// floating hearts background
+function createHearts() {
+  const h = document.createElement("div");
+  h.className = "heart-bg";
+  h.innerHTML = "🖤";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.fontSize = Math.random() * 20 + 10 + "px";
+  h.style.animationDuration = (Math.random() * 5 + 3) + "s";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 8000);
+}
+setInterval(createHearts, 300);
 
-    setTimeout(() => {
-        document.getElementById("letter").classList.add("show");
-    }, 800);
+// unlock
+function unlock() {
+  const code = document.getElementById("code").value;
+  if (code === "0727") {
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementById("envelopeScreen").style.display = "flex";
+  } else {
+    alert("Wrong code 💔");
+  }
+}
+
+// open letter + confetti
+function openLetter() {
+  document.getElementById("letter").style.display = "block";
+  launchConfetti();
+}
+
+// confetti effect
+function launchConfetti() {
+  for (let i = 0; i < 80; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.background = ["white", "pink", "gray"][Math.floor(Math.random()*3)];
+    c.style.animationDuration = (Math.random() * 2 + 2) + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3000);
+  }
 }
 </script>
 

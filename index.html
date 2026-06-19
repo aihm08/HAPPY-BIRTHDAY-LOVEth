@@ -207,20 +207,14 @@ So here's to more birthdays, more memories, more laughs, more random moments, mo
 
 Happy Birthday, Love. 
 I love you so much, always and in all ways. 🌸
-
-
 `
 One last thing...
-
 It's your birthday today.
 
 Before you leave,
 write down a birthday wish.
 
 I hope it comes true. ♡
-
-'
-];
 
 <br><br>
 
@@ -234,6 +228,8 @@ placeholder="Write your birthday wish here..."></textarea>
 </button>
 
 <p id="wishMessage"></p>
+'
+ ];
 
   function saveWish() {
   const wish = document.getElementById("wishBox").value;
@@ -246,16 +242,14 @@ placeholder="Write your birthday wish here..."></textarea>
   localStorage.setItem("birthdayWish", wish);
 
   document.getElementById("wishMessage").innerHTML =
-  "✨ Wish locked successfully. Don't tell anyone, or it might not come true. ♡";
-    
-}
+    "✨ Wish locked successfully. Don't tell anyone, or it might not come true. ♡";
+  }
 
 let currentPage = 0;
 
 function showPage() {
-    document.getElementById("content").innerText =
-        pages[currentPage];
-
+    document.getElementById("content").innerHTML = pages[currentPage];
+  
     document.getElementById("pageNum").innerText =
   `Page ${currentPage + 1} of ${pages.length}`;
   

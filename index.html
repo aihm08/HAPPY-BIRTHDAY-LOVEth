@@ -227,9 +227,55 @@ I hope it comes true. ♡
 </button>
 
 <p id="wishMessage"></p>`
+`
+<div style="text-align:center;">
+
+<h2>🫙 Wish Jar</h2>
+
+<p>
+Every birthday wish deserves a safe place to stay.
+Tap the button below to see the wish you made today. ✨
+</p>
+
+<div style="
+  font-size:80px;
+  margin:20px 0;
+">
+🫙
+</div>
+
+<button onclick="loadWish()">
+✨ Peek Inside the Jar
+</button>
+
+<div id="savedWishDisplay"
+     style="
+       margin-top:20px;
+       padding:15px;
+       border-radius:12px;
+       background:#fff8e7;
+       color:#333;
+       min-height:50px;
+     ">
+</div>
+
+</div>
+`
 ];
 
   function saveWish() {
+  const savedWish = localStorage.getItem("birthdayWish");
+  const box = document.getElementById("savedWishDisplay");
+
+  if (savedWish) {
+    box.innerHTML = `
+      <p>🌸 Your Birthday Wish:</p>
+      <p>${savedWish}</p>
+    `;
+  } else {
+    box.innerHTML = "🫙 The wish jar is empty.";
+  }
+    }
   const wish = document.getElementById("wishBox").value;
 
   if (wish.trim() === "") {

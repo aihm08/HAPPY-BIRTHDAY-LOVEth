@@ -265,7 +265,7 @@ Tap the button below to see the wish you made today. ✨
 <h2>💖 Reasons I Love You</h2>
 
 <p>
-Here are just a few reasons why I chose you...
+Here are just a few reasons why I Love you...
 </p>
 
 <ul style="text-align:left; line-height:2;">
@@ -304,10 +304,37 @@ Here are just a few reasons why I chose you...
 })();
 
 </div>
+`,
 `
+<div style="text-align:center; padding:30px;">
 
+<h1>💖 The End</h1>
+
+<p>
+Thank you for taking the time to read everything.
+</p>
+
+<p>
+I hope this little website made you smile,
+even just for a moment.
+</p>
+
+<p style="margin-top:20px;">
+No matter how many birthdays pass,<br>
+I'll always be grateful that our paths crossed.
+</p>
+
+<h2 style="margin-top:30px;">
+Happy Birthday, Love. 🎂
+</h2>
+
+<p>
+I love you, always and in all ways. ♡
+</p>
+
+</div>
+`
 ];
-
 
   function saveWish() {
   const wish = document.getElementById("wishBox").value;
@@ -335,6 +362,18 @@ Here are just a few reasons why I chose you...
   } else {
     box.innerHTML = "🫙 The wish jar is empty.";
   }
+    function updateCountdown() {
+  const today = new Date();
+  let next = new Date(today.getFullYear(), 6, 27);
+
+  if (today > next) {
+    next.setFullYear(next.getFullYear() + 1);
+  }
+
+  const diff = Math.ceil((next - today) / (1000 * 60 * 60 * 24));
+  document.getElementById("countdown").textContent =
+    diff + " days left until your next birthday. 🤍";
+    }
   }
 
 let currentPage = 0;

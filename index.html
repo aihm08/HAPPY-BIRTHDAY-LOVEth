@@ -22,6 +22,92 @@ body{
     text-align:center;
     padding:20px;
 }
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+
+    <button id="playBtn" onclick="startExperience()">
+💖 Play Me
+</button>
+
+<audio id="bgMusic">
+    <source src="music.mp4" type="audio/mp4">
+</audio>
+
+    #letter{
+    display:none;
+    background:white;
+    max-width:800px;
+    padding:30px;
+    border-radius:20px;
+    line-height:2;
+    box-shadow:0 0 25px rgba(0,0,0,.2);
+
+    font-family:'Dancing Script', cursive;
+    font-size:28px;
+    }
+
+    <script>
+function createHeart(){
+    const heart = document.createElement("div");
+
+    heart.innerHTML = "💖";
+    heart.style.position = "fixed";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = "100vh";
+    heart.style.fontSize = "24px";
+    heart.style.pointerEvents = "none";
+
+    document.body.appendChild(heart);
+
+    let pos = 100;
+
+    const move = setInterval(() => {
+        pos--;
+
+        heart.style.top = pos + "vh";
+
+        if(pos < -10){
+            clearInterval(move);
+            heart.remove();
+        }
+    },40);
+}
+
+setInterval(createHeart,1000);
+</script>
+
+const letterText = `
+PASTE YOUR WHOLE LETTER HERE
+`;
+
+function typeWriter() {
+
+    let i = 0;
+
+    const target = document.getElementById("typedLetter");
+
+    const typing = setInterval(() => {
+
+        target.innerHTML += letterText.charAt(i);
+
+        i++;
+
+        if(i >= letterText.length){
+            clearInterval(typing);
+        }
+
+    },20);
+}
+            function startExperience(){
+
+    document.getElementById("bgMusic").play();
+
+    document.getElementById("playBtn").style.display = "none";
+
+    document.getElementById("letter").style.display = "block";
+
+    typeWriter();
+            }
+}
 
 #bottle{
     font-size:120px;
@@ -95,15 +181,14 @@ h1{
 
 <p>
 First of all, HAPPY HAPPY BIRTHDAYYY LOVEE! 🥳❤️
-I hope na ma-enjoy mo yung day mo and sana marami kang reasons para ngumiti today.
-Habang binabasa mo 'to, sana napapangiti kita kahit konti hehe.
+I hope u enjoy ur day and tahol ka muna bago mo basahin eme HAHAHAHSH.DE JOKE LNG I LOVE YOUUU!!
 </p>
 
 <p>
 Ang dami kong gustong sabihin pero hindi ko alam saan magsisimula.
-I realized a lot of things, lalo na nung friends pa lang tayo.
-Looking back, grabe yung time and effort na binibigay mo sakin before.
-Kahit minsan hindi ako maayos kausap, bigla-bigla akong nawawala tapos babalik na parang walang nangyari,
+AHMM...I realized a lot of things, lalo na nung friends pa lang tayo.
+Looking back, The way you always made time and effort to talk to me and play with me.
+Kahit minsan hindi ako maayos kausap, walang kwenta ganon o bigla-bigla akong nawawala tapos babalik na parang walang nangyari,
 nandyan ka pa rin. Kinakausap mo pa rin ako and you still chose to stay.
 </p>
 
@@ -161,7 +246,7 @@ every random update,
 every good morning and good night message,
 every reassurance,
 every effort,
-and every moment na pinili mo akong mahalin.
+and every moment na pinili mo akong mahalin. (Ang cringe na noh pfft) pero continue..
 </p>
 
 <p>
@@ -190,7 +275,7 @@ for staying,
 and for always choosing me.
 Thank you for being you.
 Thank you for making my days better,
-kahit minsan ang kulit mo at wild ka.
+kahit minsan ang kulit mo at ang wild mo HAHAHAHA sabihin mong hindi.
 </p>
 
 <p>

@@ -339,10 +339,8 @@ You matter to me more than words can explain. Thank you for being you.
 <div style="text-align:center;">
 
 <h2>🎂 Until Your Next Birthday</h2>
-
 <p id="countdown" style="font-size:22px;"></p>
 
-<script>
 (function () {
   const today = new Date();
   const next = new Date(today.getFullYear(), 6, 27); // July = month 6
@@ -407,7 +405,7 @@ I love you, always and in all ways. ♡
   function loadWish() {
   const savedWish = localStorage.getItem("birthdayWish");
   const box = document.getElementById("savedWishDisplay");
-
+  }
   if (savedWish) {
     box.innerHTML = `
       <p>🌸 Your Birthday Wish:</p>
@@ -427,13 +425,13 @@ I love you, always and in all ways. ♡
   const diff = Math.ceil((next - today) / (1000 * 60 * 60 * 24));
   document.getElementById("countdown").textContent =
     diff + " days left until your next birthday. 🤍";
-    }
-  }
-
+   }
+  
 let currentPage = 0;
   
 function showPage() {
     document.getElementById("content").innerHTML = pages[currentPage];
+    updateCountdown();
 
     document.getElementById("pageNum").innerText =
         `Page ${currentPage + 1} of ${pages.length}`;

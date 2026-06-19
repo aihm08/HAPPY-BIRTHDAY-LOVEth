@@ -337,16 +337,21 @@ You matter to me more than words can explain. Thank you for being you.
 
 `
 <div style="text-align:center;">
-
-<h2>🎂 Until Your Next Birthday</h2>
-
-<p id="countdown" style="font-size:22px;"></p>
+  <h2>🎂 Until Your Next Birthday</h2>
+  <p id="countdown" style="font-size:22px;"></p>
+</div>
 `,
   
 `
 <div style="text-align:center; padding:30px;">
 
 <h1>💖 The End</h1>
+
+<br><br>
+
+<button onclick="alert('🤍 I love you. And if you ever revisit this page years from now, know that I smiled while making it just for you.')">
+  🌙 One Last Secret
+</button>
 
 <p>
 Thank you for taking the time to read everything.
@@ -373,10 +378,6 @@ I love you, always and in all ways. ♡
 </div>
 `
 ];
-
-  <button onclick="alert('🤍 I love you. And if you ever revisit this page years from now, know that I smiled while making it just for you.')">
-  🌙 One Last Secret
-</button>
 
   function saveWish() {
   const wish = document.getElementById("wishBox").value;
@@ -425,19 +426,17 @@ I love you, always and in all ways. ♡
 let currentPage = 0;
   
 function showPage() {
-    function showPage() {
   document.getElementById("content").innerHTML = pages[currentPage];
 
   updateCountdown();
 
   document.getElementById("pageNum").innerText =
     `Page ${currentPage + 1} of ${pages.length}`;
-}
 
-    document.getElementById("nextBtn").innerText =
-        currentPage === pages.length - 1
-            ? "♡ End of Letter ♡"
-            : "Next →";
+  document.getElementById("nextBtn").innerText =
+    currentPage === pages.length - 1
+      ? "♡ End of Letter ♡"
+      : "Next →";
 }
 
 function nextPage() {

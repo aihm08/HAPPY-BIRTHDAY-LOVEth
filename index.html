@@ -2,262 +2,211 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You ❤️</title>
+<title>Private</title>
 
-<!-- Romantic font -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
-  background: black;
+  background: #000;
   color: white;
+  font-family: "Inter", sans-serif;
   overflow: hidden;
-  font-family: 'Inter', sans-serif;
 }
 
-/* FLOATING HEARTS */
-.heart-bg {
-  position: absolute;
-  color: rgba(255,255,255,0.15);
-  animation: floatUp linear infinite;
-}
-
-@keyframes floatUp {
-  from { transform: translateY(100vh); opacity: 0; }
-  50% { opacity: 1; }
-  to { transform: translateY(-10vh); opacity: 0; }
-}
-
-/* LOCK SCREEN */
-#lockScreen {
+/* PASSWORD SCREEN */
+#login {
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  transition: opacity 0.8s ease;
+}
+
+.box {
   text-align: center;
 }
 
-.glowHeart {
-  font-size: 70px;
-  animation: glow 1.5s infinite alternate;
-  margin-bottom: 10px;
-}
-
-@keyframes glow {
-  from { text-shadow: 0 0 5px white; transform: scale(1); }
-  to { text-shadow: 0 0 25px white; transform: scale(1.1); }
+h1 {
+  font-weight: 300;
+  font-size: 16px;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  margin-bottom: 20px;
 }
 
 input {
   padding: 12px;
-  border-radius: 10px;
-  border: none;
+  border: 1px solid #333;
+  background: transparent;
+  color: white;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
+  border-radius: 8px;
+  outline: none;
 }
 
 button {
   margin-top: 10px;
-  padding: 10px 16px;
-  border-radius: 12px;
+  padding: 10px 18px;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
   background: white;
+  color: black;
 }
 
-/* ENVELOPE SCREEN */
-#envelopeScreen {
+/* LETTER SCREEN */
+#letterPage {
   display: none;
   height: 100vh;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  padding: 20px;
 }
 
-/* ENVELOPE */
-.envelope {
-  width: 220px;
-  height: 140px;
-  background: #777;
+/* paper design */
+.paper {
+  background: #f5f2ea;
+  color: #111;
+  max-width: 500px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  animation: reveal 1s ease;
   position: relative;
-  cursor: pointer;
-  transition: transform 0.3s;
 }
 
-.envelope:hover {
-  transform: scale(1.05);
-}
-
-/* flap */
-.envelope:before {
+/* subtle paper texture effect */
+.paper::before {
   content: "";
   position: absolute;
-  top: 0;
-  border-left: 110px solid transparent;
-  border-right: 110px solid transparent;
-  border-bottom: 70px solid #999;
-}
-
-/* LETTER */
-#letter {
-  display: none;
-  background: #fff;
-  color: #111;
-  width: 320px;
-  padding: 25px;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.02),
+    rgba(0,0,0,0.02) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  pointer-events: none;
   border-radius: 12px;
-  margin-top: 20px;
-  animation: slideUp 1s ease;
-  font-family: 'Inter', sans-serif;
 }
 
-@keyframes slideUp {
-  from { transform: translateY(40px); opacity: 0; }
+@keyframes reveal {
+  from { transform: translateY(30px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
 
+/* text styling */
 .date {
   font-size: 13px;
-  margin-bottom: 10px;
-  opacity: 0.7;
-}
-
-.signature {
-  margin-top: 20px;
-  text-align: right;
-  font-style: italic;
+  opacity: 0.6;
+  margin-bottom: 20px;
 }
 
 .title {
-  font-family: 'Great Vibes', cursive;
-  font-size: 28px;
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  margin-bottom: 20px;
 }
 
-/* CONFETTI */
-.confetti {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: white;
-  animation: fall linear forwards;
+.message {
+  line-height: 1.7;
+  font-size: 15px;
 }
 
-@keyframes fall {
-  to {
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0;
-  }
+.signature {
+  margin-top: 30px;
+  text-align: right;
+  font-style: italic;
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOCK -->
-<div id="lockScreen">
-  <div class="glowHeart">🖤</div>
-  <p>Enter the 4-digit code</p>
-  <input id="code" maxlength="4" type="password">
-  <button onclick="unlock()">Unlock</button>
+<!-- PASSWORD -->
+<div id="login">
+  <div class="box">
+    <h1>Enter Password</h1>
+    <input id="code" type="password" maxlength="4" placeholder="••••">
+    <br>
+    <button onclick="unlock()">Enter</button>
+  </div>
 </div>
 
-<!-- ENVELOPE -->
-<div id="envelopeScreen">
-  <div class="envelope" onclick="openLetter()"></div>
+<!-- LETTER -->
+<div id="letterPage">
+  <div class="paper">
 
-  <div id="letter">
     <div class="date">July 27</div>
+
     <div class="title">My Love,</div>
 
-    <p>
-      
-Hi love,
+<div class="message">
 
-First of all, HAPPY HAPPY BIRTHDAYYY LOVEE! 🥳❤️ I hope u enjoy ur day and tahol ka muna bago mo basahin HAHAHAHAH joke lng love youuuu birthday boy!
-Ang dami kong gustong sabihin pero hindi ko alam saan magsisimula. AHMM...I realized a lot of things, lalo na nung friends pa lang tayo. Hmmm.. Looking back, The way you always made time and effort to talk to me and play with me. Kahit minsan hindi ako maayos kausap, walang kwenta ganon o bigla bigla akong nawawala tapos babalik na parang walang nangyari, nandyan ka pa rin. Kinakausap mo pa rin ako and you still chose to stay.
+Hi love,<br><br>
 
-I'm really grateful for you love. Thank you for being my pet, my best friend, duo, partner, kaaway minsan, at syempre, my love. Alam mo love lagi kong sinasabi na nakikita ko lahat ng efforts mo kahit hindi ko laging nasasabi. Always remember that I love you so much, and I hope hindi mo iniisip na kulang yung love ko sayo just because ikaw yung unang nagsasabi ng "I love you" or "I miss you." Hindi man ako expressive minsan, pero I always love and miss you too.
+First of all, HAPPY HAPPY BIRTHDAYYY LOVEE! 🥳❤️ I hope u enjoy ur day and tahol ka muna bago mo basahin HAHAHAHAH joke lng love youuuu birthday boy!<br><br>
 
-I chose you because you make me feel safe. Ikaw yung taong gusto kong lapitan kapag okay ako at lalo na kapag hindi. You're not perfect, love, and alam kong may times na nag-ooverthink ka. Sana hindi mo sarilinin lahat ng nararamdaman mo. Wag mo laging isipin na ipagpapalit kita dahil lang sa mga nangyari sa past mo. We both have our own past, and I hope we continue learning from it instead of letting it affect what we have now.
+Ang dami kong gustong sabihin pero hindi ko alam saan magsisimula. AHMM...I realized a lot of things, lalo na nung friends pa lang tayo. Hmmm.. Looking back, The way you always made time and effort to talk to me and play with me. Kahit minsan hindi ako maayos kausap, walang kwenta ganon o bigla bigla akong nawawala tapos babalik na parang walang nangyari, nandyan ka pa rin. Kinakausap mo pa rin ako and you still chose to stay.<br><br>
 
-And love, sana if may problema ka, sabihin mo sakin. Partner mo ko eh. Gusto kong ako yung isa sa mga taong pwede mong takbuhan kapag may bumabagabag sayo. Hindi rin naman ako perfect, so if may nagagawa akong mali or may bagay na nakakasakit sayo, please tell me. I want us to be honest with each other.
+I'm really grateful for you love. Thank you for being my pet, my best friend, duo, partner, kaaway minsan, at syempre, my love. Alam mo love lagi kong sinasabi na nakikita ko lahat ng efforts mo kahit hindi ko laging nasasabi. Always remember that I love you so much, and I hope hindi mo iniisip na kulang yung love ko sayo just because ikaw yung unang nagsasabi ng "I love you" or "I miss you." Hindi man ako expressive minsan, pero I always love and miss you too.<br><br>
 
-I don't want our relationship to be just another experience. I want this to last. Alam kong hindi magiging madali palagi. Magkakaroon tayo ng misunderstandings, doubts, tampuhan, at kung ano ano pa. Pero sana kahit mahirap, piliin pa rin nating intindihin ang isa't isa. Sana kapag may problema, hindi tayo agad susuko. (Susuko? HAHAHAHAH) Instead, we'll choose to fix things together.
-Sa totoo lang, isa ka sa pinakamagandang bagay na nangyari sa buhay ko. Ang cringe huhu pero basta ganon, You became one of my comfort people, one of my safe places, and one of the reasons why my days became brighter. Kahit simpleng usapan lang, kahit simpleng pangungulit mo, you always manage to make me smile. You make ordinary days feel special without even trying.
+I chose you because you make me feel safe. Ikaw yung taong gusto kong lapitan kapag okay ako at lalo na kapag hindi. You're not perfect, love, and alam kong may times na nag-ooverthink ka. Sana hindi mo sarilinin lahat ng nararamdaman mo. Wag mo laging isipin na ipagpapalit kita dahil lang sa mga nangyari sa past mo. We both have our own past, and I hope we continue learning from it instead of letting it affect what we have now.<br><br>
 
-Thank you for every late night conversation, every random update, every good morning and good night message, every reassurance, every effort, and every moment na pinili mo akong mahalin. Ehe HAHAHAHA Those things may seem small, but they mean so much to me.
+And love, sana if may problema ka, sabihin mo sakin. Partner mo ko eh. Gusto kong ako yung isa sa mga taong pwede mong takbuhan kapag may bumabagabag sayo. Hindi rin naman ako perfect, so if may nagagawa akong mali or may bagay na nakakasakit sayo, please tell me. I want us to be honest with each other.<br><br>
 
-Thank you for being patient with me during the times na mahirap akong intindihin. Thank you for staying even when things weren't always easy. Thank you for accepting the parts of me that I'm still learning to accept myself. Your presence in my life has been one of the greatest blessings I've ever received.
+I don't want our relationship to be just another experience. I want this to last. Alam kong hindi magiging madali palagi. Magkakaroon tayo ng misunderstandings, doubts, tampuhan, at kung ano ano pa. Pero sana kahit mahirap, piliin pa rin nating intindihin ang isa't isa. Sana kapag may problema, hindi tayo agad susuko. (Susuko? HAHAHAHAH) Instead, we'll choose to fix things together.<br><br>
 
-I hope this new chapter of your life brings you happiness, growth, peace of mind, and countless opportunities. I hope you achieve every dream you're working hard for. I hope you continue becoming the amazing person that you already are. And whenever life gets difficult, I hope you remember that you don't have to face everything alone. I'm here.
+Sa totoo lang, isa ka sa pinakamagandang bagay na nangyari sa buhay ko. Ang cringe huhu pero basta ganon, You became one of my comfort people, one of my safe places, and one of the reasons why my days became brighter. Kahit simpleng usapan lang, kahit simpleng pangungulit mo, you always manage to make me smile. You make ordinary days feel special without even trying.<br><br>
 
-Pero for today, wag muna tayo maging emotional masyado HAHAHAH ang cringe na pero ganon tlga Birthday mo ngayon, so ang mission mo ay mag enjoy, kumain nang marami, magpahinga, at maging masaya. Bawal mag overthink today, birthday boy privilege yan.
+Thank you for every late night conversation, every random update, every good morning and good night message, every reassurance, every effort, and every moment na pinili mo akong mahalin. Ehe HAHAHAHA Those things may seem small, but they mean so much to me.<br><br>
 
-Thank you for loving me, for staying, and for always choosing me. Thank you for being you. Thank you for making my days better, kahit minsan ang kulit mo at wild ka.
+Thank you for being patient with me during the times na mahirap akong intindihin. Thank you for staying even when things weren't always easy. Thank you for accepting the parts of me that I'm still learning to accept myself. Your presence in my life has been one of the greatest blessings I've ever received.<br><br>
 
-I'm so proud of you and everything you've achieved so far. You deserve all the good things na meron ka ngayon at lahat ng blessings na darating pa. Sana maging mabait sayo ang buhay, and kapag hindi, nandito lang ako para lalo kang pahirapan eme. 
+I hope this new chapter of your life brings you happiness, growth, peace of mind, and countless opportunities. I hope you achieve every dream you're working hard for. I hope you continue becoming the amazing person that you already are. And whenever life gets difficult, I hope you remember that you don't have to face everything alone. I'm here.<br><br>
 
-Again, happy happy birthday, love. 
+Pero for today, wag muna tayo maging emotional masyado HAHAHAH ang cringe na pero ganon tlga Birthday mo ngayon, so ang mission mo ay mag enjoy, kumain nang marami, magpahinga, at maging masaya. Bawal mag overthink today, birthday boy privilege yan.<br><br>
 
-Enjoy your special day, make lots of memories, and don't forget to thank God for another year of your life. I love you so much, always and in all ways. 🌸
+Thank you for loving me, for staying, and for always choosing me. Thank you for being you. Thank you for making my days better, kahit minsan ang kulit mo at wild ka.<br><br>
 
-And if there's one thing I want you to remember after reading this letter, it's that you are loved. More than you know. More than I can explain through words. No matter how many birthdays pass, no matter how much time goes by, I will always be grateful that our paths crossed. Meeting you was one of the best things that ever happened to me.
+I'm so proud of you and everything you've achieved so far. You deserve all the good things na meron ka ngayon at lahat ng blessings na darating pa. Sana maging mabait sayo ang buhay, and kapag hindi, nandito lang ako para lalo kang pahirapan eme.<br><br>
 
-So here's to more birthdays, more memories, more laughs, more random moments, more adventures, and hopefully, more years of us.
+Again, happy happy birthday, love.<br><br>
 
-Happy Birthday, Love. 
+Enjoy your special day, make lots of memories, and don't forget to thank God for another year of your life. I love you so much, always and in all ways. 🌸<br><br>
+
+And if there's one thing I want you to remember after reading this letter, it's that you are loved. More than you know. More than I can explain through words. No matter how many birthdays pass, no matter how much time goes by, I will always be grateful that our paths crossed. Meeting you was one of the best things that ever happened to me.<br><br>
+
+So here's to more birthdays, more memories, more laughs, more random moments, more adventures, and hopefully, more years of us.<br><br>
+
+Happy Birthday, Love.<br>
 I love you so much, always and in all ways. 🌸
 
-        <p></p>
-
+</div>
 
     <div class="signature">love mhia</div>
+
   </div>
 </div>
 
 <script>
-// floating hearts background
-function createHearts() {
-  const h = document.createElement("div");
-  h.className = "heart-bg";
-  h.innerHTML = "🖤";
-  h.style.left = Math.random() * 100 + "vw";
-  h.style.fontSize = Math.random() * 20 + 10 + "px";
-  h.style.animationDuration = (Math.random() * 5 + 3) + "s";
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 8000);
-}
-setInterval(createHearts, 300);
-
-// unlock
 function unlock() {
   const code = document.getElementById("code").value;
+
   if (code === "0727") {
-    document.getElementById("lockScreen").style.display = "none";
-    document.getElementById("envelopeScreen").style.display = "flex";
+    document.getElementById("login").style.opacity = "0";
+    setTimeout(() => {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("letterPage").style.display = "flex";
+    }, 700);
   } else {
-    alert("Wrong code 💔");
-  }
-}
-
-// open letter + confetti
-function openLetter() {
-  document.getElementById("letter").style.display = "block";
-  launchConfetti();
-}
-
-// confetti effect
-function launchConfetti() {
-  for (let i = 0; i < 80; i++) {
-    const c = document.createElement("div");
-    c.className = "confetti";
-    c.style.left = Math.random() * 100 + "vw";
-    c.style.background = ["white", "pink", "gray"][Math.floor(Math.random()*3)];
-    c.style.animationDuration = (Math.random() * 2 + 2) + "s";
-    document.body.appendChild(c);
-    setTimeout(() => c.remove(), 3000);
+    alert("Wrong password.");
   }
 }
 </script>

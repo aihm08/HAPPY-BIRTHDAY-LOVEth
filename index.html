@@ -3,262 +3,233 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Message in a Bottle ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+<title>For You ❤️</title>
 
 <style>
 body {
     margin: 0;
+    height: 100vh;
     overflow: hidden;
-    font-family: 'Dancing Script', cursive;
-}
 
-/* 🌊 Ocean */
-.ocean {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, #003b73, #00c6ff);
-}
-
-.wave {
-    position: absolute;
-    bottom: -90px;
-    width: 200%;
-    height: 200px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 45%;
-    animation: waveMove 12s linear infinite;
-}
-
-.wave:nth-child(2) {
-    opacity: 0.3;
-    animation-duration: 16s;
-}
-
-@keyframes waveMove {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-/* 🍾 Bottle */
-.bottle {
-    position: absolute;
-    width: 120px;
-    height: 260px;
-    left: -150px;
-    bottom: 120px;
-    cursor: pointer;
-    animation: drift 8s ease-in-out forwards;
-    z-index: 5;
-}
-
-@keyframes drift {
-    0% { left: -150px; transform: rotate(-10deg); }
-    60% { transform: rotate(5deg); }
-    100% { left: 50%; transform: translateX(-50%) rotate(0deg); }
-}
-
-.bottle-body {
-    width: 80px;
-    height: 180px;
-    background: rgba(255,255,255,0.25);
-    border: 2px solid rgba(255,255,255,0.8);
-    border-radius: 30px;
-    margin: 0 auto;
-    position: relative;
-    top: 40px;
-}
-
-.cork {
-    width: 40px;
-    height: 20px;
-    background: #b07a3f;
-    margin: 0 auto;
-    border-radius: 5px;
-}
-
-/* 🌙 overlay */
-.overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.4);
-    opacity: 0;
-    transition: 1s;
-    pointer-events: none;
-}
-
-.overlay.show {
-    opacity: 1;
-}
-
-/* 📦 letter */
-.wrapper {
-    position: fixed;
-    width: 100%;
-    height: 100%;
+    background: linear-gradient(135deg, #cfe9ff, #ffffff);
     display: flex;
-    align-items: center;
     justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 10;
+    align-items: center;
+
+    font-family: "Georgia", serif;
 }
 
-.wrapper.show {
-    opacity: 1;
+/* ✉️ ENVELOPE */
+.envelope {
+    width: 280px;
+    height: 180px;
+    position: relative;
+
+    background: #ffffff;
+    border: 2px solid #bcdfff;
+    border-radius: 10px;
+
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-.paper {
-    width: 380px;
-    background: rgba(255,255,255,0.95);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+.flap {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    background: #d9efff;
 
-    transform: scale(0.2) rotate(-5deg);
-    filter: blur(10px);
-    opacity: 0;
-    transition: all 1.2s ease;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top;
+    transition: transform 0.8s ease;
 }
 
-.wrapper.show .paper {
-    transform: scale(1) rotate(0deg);
-    filter: blur(0);
-    opacity: 1;
+.envelope.open .flap {
+    transform: rotateX(180deg);
 }
 
-#text {
-    font-size: 20px;
-    white-space: pre-wrap;
-    border-right: 2px solid #333;
-    animation: blink 0.7s infinite;
+/* 🔘 BUTTON */
+button {
+    position: absolute;
+    bottom: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+
+    background: #7ec8ff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
-@keyframes blink {
-    50% { border-color: transparent; }
+button:hover {
+    background: #4faeff;
 }
 
-/* ✨ particles */
-.particle {
+/* 💌 LETTER (UPDATED MANLY SOFT BLUE STYLE) */
+.letter {
     position: fixed;
-    width: 6px;
-    height: 6px;
-    background: white;
-    border-radius: 50%;
+    width: 430px;
+    max-height: 70vh;
+
+    background: linear-gradient(135deg, #d9efff, #f5fbff);
+    border: 1px solid #a9d6ff;
+
+    border-radius: 14px;
+    padding: 28px;
+
+    box-shadow: 0 25px 60px rgba(0,0,0,0.18);
+
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.9s ease;
+
+    overflow-y: auto;
+
+    color: #1f3b57; /* deep calm blue text */
+}
+
+.letter h2 {
+    color: #1a4d7a;
+    margin-bottom: 15px;
+}
+
+.letter.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ✨ SLOW PARTICLES */
+.particle {
+    position: absolute;
+    font-size: 12px;
+    color: #4faeff;
+    font-weight: 500;
+    white-space: nowrap;
     pointer-events: none;
-    animation: floatUp 3s linear forwards;
+
+    animation: floatUp 4.5s ease-in-out forwards;
 }
 
 @keyframes floatUp {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-200px); opacity: 0; }
+    0% {
+        transform: translateY(0) scale(0.9);
+        opacity: 0;
+    }
+    20% { opacity: 1; }
+    100% {
+        transform: translateY(-180px) scale(1);
+        opacity: 0;
+    }
 }
 
-/* 💖 floating text */
-.float-text {
-    position: fixed;
-    font-size: 14px;
-    color: white;
-    animation: floatText 3s ease-out forwards;
-    pointer-events: none;
-}
+/* 🐶 CHIBI DOG */
+.dog {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 
-@keyframes floatText {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-120px); opacity: 0; }
-}
-
-/* 🔘 done button */
-.done-btn {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 12px 20px;
-    border: none;
-    border-radius: 20px;
-    background: #ff4d6d;
-    color: white;
-    cursor: pointer;
-    display: none;
-    z-index: 20;
-}
-
-/* 📝 wish box */
-.wish-panel {
-    position: fixed;
-    bottom: 90px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 20;
-}
-
-#wishInput {
-    width: 280px;
+    width: 100px;
     height: 100px;
-    border-radius: 12px;
-    border: none;
-    padding: 10px;
-    font-family: 'Dancing Script', cursive;
+
+    background: #fff;
+    border-radius: 50%;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+    animation: floatDog 3s ease-in-out infinite;
+}
+
+.dog::before,
+.dog::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #ffd6e0;
+    border-radius: 50%;
+    top: -8px;
+}
+
+.dog::before { left: 10px; }
+.dog::after { right: 10px; }
+
+.eye {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #333;
+    border-radius: 50%;
+    top: 38px;
+}
+
+.eye.left { left: 28px; }
+.eye.right { right: 28px; }
+
+.nose {
+    position: absolute;
+    width: 8px;
+    height: 6px;
+    background: pink;
+    border-radius: 50%;
+    top: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes floatDog {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ✨ HINT */
+.hint {
+    position: absolute;
+    top: 60px;
     font-size: 18px;
-    outline: none;
-    resize: none;
+    color: #4a90e2;
+    animation: floatHint 1.8s infinite;
 }
 
-/* ⭐ stars */
-.star {
-    position: fixed;
-    font-size: 16px;
-    color: gold;
-    animation: fly 4s ease-out forwards;
-    pointer-events: none;
+@keyframes floatHint {
+    0%,100% { transform: translateY(0); opacity: 0.8; }
+    50% { transform: translateY(-8px); opacity: 1; }
 }
 
-@keyframes fly {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-400px) scale(0.2) rotate(180deg); opacity: 0; }
-}
 </style>
 </head>
 
 <body>
 
-<div class="ocean">
-    <div class="wave"></div>
-    <div class="wave"></div>
+<div class="hint">✨ Click the button to open your letter</div>
 
-    <div class="bottle" onclick="openBottle()">
-        <div class="cork"></div>
-        <div class="bottle-body"></div>
-    </div>
+<!-- 🐶 DOG -->
+<div class="dog">
+    <div class="eye left"></div>
+    <div class="eye right"></div>
+    <div class="nose"></div>
 </div>
 
-<div class="overlay" id="overlay"></div>
+<!-- ✉️ ENVELOPE -->
+<div class="envelope" id="envelope">
+    <div class="flap"></div>
 
-<div class="wrapper" id="wrapper">
-    <div class="paper">
-        <div id="text"></div>
-    </div>
+    <button onclick="openLetter()">Open Letter 💌</button>
 </div>
 
-<!-- 💌 wish UI -->
-<div class="wish-panel" id="wishPanel">
-    <textarea id="wishInput" placeholder="Write your wish for the stars..."></textarea>
-    <button onclick="sendWish()">Send it to the stars 🌠</button>
-</div>
+<!-- 💌 LETTER -->
+<div class="letter" id="letter">
+    <h2>🎂 Happy Birthday, Love ❤️</h2>
 
-<button class="done-btn" id="doneBtn" onclick="showWish()">Done Reading ❤️</button>
+    <p>Hi love,</p>
 
-<script>
-
-const message = `
-
+    <p>
+    
 Hi love,
 
 First of all, HAPPY HAPPY BIRTHDAYYY LOVEE! 🥳❤️ I hope u enjoy ur day and tahol ka muna bago mo basahin HAHAHAHAH joke lng love youuuu birthday boy!
@@ -296,105 +267,46 @@ So here's to more birthdays, more memories, more laughs, more random moments, mo
 Happy Birthday, Love. 
 I love you so much, always and in all ways. 🌸
 
-`;
+    </p>
 
-let i = 0;
-let started = false;
+    <p><strong>Happy Birthday, Love 🎂❤️</strong></p>
+</div>
 
-/* ✍️ typing */
-function typeWriter() {
-    if (i < message.length) {
-        document.getElementById("text").innerHTML += message.charAt(i);
-        i++;
-        setTimeout(typeWriter, 35);
-    } else {
-        document.getElementById("doneBtn").style.display = "block";
+<script>
+
+let opened = false;
+
+/* ✉️ OPEN ENVELOPE */
+function openLetter() {
+    if (opened) return;
+    opened = true;
+
+    document.getElementById("envelope").classList.add("open");
+
+    burstParticles();
+
+    setTimeout(() => {
+        document.getElementById("letter").classList.add("show");
+    }, 800);
+}
+
+/* ✨ SLOW TEXT PARTICLES */
+function burstParticles() {
+    const messages = ["happy birthday love", "i love you", "❤️"];
+
+    for (let i = 0; i < 25; i++) {
+        const p = document.createElement("div");
+        p.classList.add("particle");
+
+        p.innerText = messages[Math.floor(Math.random() * messages.length)];
+
+        p.style.left = (window.innerWidth/2 + (Math.random()*140 - 70)) + "px";
+        p.style.top = (window.innerHeight/2 + (Math.random()*100 - 50)) + "px";
+
+        document.body.appendChild(p);
+
+        setTimeout(() => p.remove(), 6000);
     }
-}
-
-/* ✨ particles */
-function createParticle(x, y) {
-    const p = document.createElement("div");
-    p.classList.add("particle");
-    p.style.left = x + "px";
-    p.style.top = y + "px";
-    document.body.appendChild(p);
-    setTimeout(() => p.remove(), 3000);
-}
-
-/* 💖 floating text */
-function createFloatText(x, y) {
-    const t = document.createElement("div");
-    t.classList.add("float-text");
-    t.innerText = "Happy Birthday Love 💖";
-    t.style.left = x + "px";
-    t.style.top = y + "px";
-    document.body.appendChild(t);
-    setTimeout(() => t.remove(), 3000);
-}
-
-/* 🍾 open bottle */
-function openBottle() {
-    if (started) return;
-    started = true;
-
-    document.getElementById("overlay").classList.add("show");
-    document.getElementById("wrapper").classList.add("show");
-
-    for (let i = 0; i < 20; i++) {
-        setTimeout(() => {
-            createParticle(
-                window.innerWidth / 2 + (Math.random() * 100 - 50),
-                window.innerHeight / 2 + (Math.random() * 100 - 50)
-            );
-        }, i * 50);
-    }
-
-    for (let i = 0; i < 5; i++) {
-        setTimeout(() => {
-            createFloatText(
-                window.innerWidth / 2 + (Math.random() * 120 - 60),
-                window.innerHeight / 2 + (Math.random() * 80 - 40)
-            );
-        }, i * 300);
-    }
-
-    setTimeout(typeWriter, 900);
-}
-
-/* 💌 show wish panel */
-function showWish() {
-    document.getElementById("wishPanel").style.display = "flex";
-}
-
-/* 🌠 send wish -> stars */
-function sendWish() {
-    const text = document.getElementById("wishInput").value;
-    if (!text.trim()) return;
-
-    const rect = document.getElementById("wishInput").getBoundingClientRect();
-
-    for (let i = 0; i < text.length; i++) {
-        setTimeout(() => {
-            createStar(
-                rect.left + Math.random() * rect.width,
-                rect.top + Math.random() * rect.height
-            );
-        }, i * 40);
-    }
-
-    document.getElementById("wishPanel").style.display = "none";
-}
-
-/* ⭐ star */
-function createStar(x, y) {
-    const s = document.createElement("div");
-    s.classList.add("star");
-    s.innerHTML = "⭐";
-    s.style.left = x + "px";
-    s.style.top = y + "px";
-    document.body.appendChild(s);
-    setTimeout(() => s.remove(), 4000);
 }
 
 </script>

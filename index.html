@@ -35,6 +35,15 @@
   border-radius: 50px;
   z-index: 999;
   }
+  @keyframes fadeStar {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px) scale(1.5);
+  }
   
 body {
   margin: 0;
@@ -43,7 +52,6 @@ body {
   font-family: "Inter", sans-serif;
   overflow-y: auto;
 }
-  <div id="stars"></div>
 
 /* PASSWORD SCREEN */
 #login {
@@ -155,15 +163,20 @@ button {
   font-style: italic;
 }
 </style>
+}
 </head>
 
 <body>
 
+<div id="stars"></div>
+
+<button id="surpriseBtn" onclick="surpriseMe()">
+  ✨ Surprise
+</button>
+
+
 <!-- PASSWORD -->
 <div id="login">
-  <button id="surpriseBtn" onclick="surpriseMe()">
-  ✨ Surprise
-  </button>
   <div class="box">
     <h1>Enter Password</h1>
     <input id="code" type="password" maxlength="4" placeholder="••••">
@@ -505,6 +518,21 @@ title.style.display = currentPage === 0 ? "block" : "none";
     currentPage === pages.length - 1
       ? "♡ End of Letter ♡"
       : "Next →";
+
+  document.addEventListener("click", function(e) {
+  const star = document.createElement("div");
+  star.textContent = "⭐";
+  star.style.position = "fixed";
+  star.style.left = e.clientX + "px";
+  star.style.top = e.clientY + "px";
+  star.style.pointerEvents = "none";
+  star.style.fontSize = "20px";
+  star.style.animation = "fadeStar 1s forwards";
+
+  document.body.appendChild(star);
+
+  setTimeout(() => star.remove(), 1000);
+});
 }
 
 function nextPage() {
@@ -555,6 +583,20 @@ function unlock() {
     surprises[Math.floor(Math.random() * surprises.length)]
   );
       }
+document.addEventListener("click", function(e) {
+  const star = document.createElement("div");
+  star.textContent = "⭐";
+  star.style.position = "fixed";
+  star.style.left = e.clientX + "px";
+  star.style.top = e.clientY + "px";
+  star.style.pointerEvents = "none";
+  star.style.fontSize = "20px";
+  star.style.animation = "fadeStar 1s forwards";
+
+  document.body.appendChild(star);
+
+  setTimeout(() => star.remove(), 1000);
+});
 </script>
 
 </body>

@@ -264,73 +264,85 @@ Tap the button below to see the wish you made today. ✨
 
 <h2>💌 Read This When...</h2>
 
-<p>
-These are little notes I hope you'll remember whenever you need them. ♡
+<p style="opacity:0.8;">
+Tap any title below to reveal a little note. ♡
 </p>
 
 <hr>
 
-<h3>🌧️ Read this when you're doubting yourself.</h3>
-<p>
-You're stronger and more capable than you think. I believe in you, even on the days when you don't believe in yourself.
-</p>
+<h3 onclick="toggleMessage('msg1')" style="cursor:pointer;">
+🌧️ Read this when you're doubting yourself
+</h3>
+<div id="msg1" style="display:none; margin-bottom:20px;">
+  You're stronger and more capable than you think. I believe in you, even on the days when you don't believe in yourself.
+</div>
 
 <hr>
 
-<h3>💭 Read this when you miss me.</h3>
-<p>
-There's a good chance I'm missing you too. Just remember that you're always in my thoughts.
-</p>
+<h3 onclick="toggleMessage('msg2')" style="cursor:pointer;">
+💭 Read this when you miss me
+</h3>
+<div id="msg2" style="display:none; margin-bottom:20px;">
+  There's a good chance I'm missing you too. Just remember that you're always in my thoughts. ♡
+</div>
 
 <hr>
 
-<h3>😔 Read this when you're having a hard day.</h3>
-<p>
-You don't have to carry everything alone. Rest if you need to, and remember that tomorrow is another chance to start again.
-</p>
+<h3 onclick="toggleMessage('msg3')" style="cursor:pointer;">
+😔 Read this when you're having a hard day
+</h3>
+<div id="msg3" style="display:none; margin-bottom:20px;">
+  You don't have to carry everything alone. Rest if you need to, and remember that tomorrow is another chance to start again.
+</div>
 
 <hr>
 
-<h3>🎂 Read this on your next birthday.</h3>
-<p>
-I hope you're smiling, chasing your dreams, and surrounded by people who love you. And I hope this little website still makes you happy.
-</p>
+<h3 onclick="toggleMessage('msg4')" style="cursor:pointer;">
+🎂 Read this on your next birthday
+</h3>
+<div id="msg4" style="display:none; margin-bottom:20px;">
+  I hope you're smiling, chasing your dreams, and surrounded by people who love you. I hope this little website still makes you happy.
+</div>
 
 <hr>
 
-<h3>🤍 Read this whenever you forget how much you're loved.</h3>
-<p>
-You matter to me more than words can explain. Thank you for being you.
+<h3 onclick="toggleMessage('msg5')" style="cursor:pointer;">
+🤍 Read this whenever you forget how much you're loved
+</h3>
+<div id="msg5" style="display:none; margin-bottom:20px;">
+  You matter to me more than words can explain. Thank you for being you. Always remember that you are deeply loved.
+</div>
+
+<hr>
+
+<h3 onclick="toggleMessage('secret')" style="cursor:pointer;">
+🔒 Secret Note (Tap me)
+</h3>
+<div id="secret" style="display:none; margin-top:20px;">
+
+<p style="font-size:12px; opacity:0.7;">
+You found the hidden message...
 </p>
 
-<hr style="margin:30px 0;">
+<p>
+If you're reading this, it means you stayed until the very end.
+Thank you for taking the time to read every word I wrote.
+</p>
 
-<div style="text-align:center; margin-top:30px;">
+<p>
+I hope this little gift made you smile, even just for a moment.
+No matter what happens, I hope you always remember that someone out there is genuinely cheering you on and wishing for your happiness.
+</p>
 
-  <p style="font-size:12px; opacity:0.6;">
-    You found the hidden message...
-  </p>
+<p style="font-style:italic;">
+"You are one of my favorite chapters, and I'm grateful our paths crossed." ♡
+</p>
 
-  <h3>🤍 Secret Note</h3>
+<p style="font-size:13px; opacity:0.7;">
+P.S. You weren't supposed to find this so quickly. 🤭
+</p>
 
-  <p style="line-height:1.8;">
-    If you're reading this, it means you stayed until the very end.
-    Thank you for taking the time to read every word I wrote.
-  </p>
-
-  <p style="line-height:1.8;">
-    I hope this little gift made you smile, even just for a moment.
-    No matter what happens, I hope you always remember that someone out there
-    is genuinely wishing for your happiness and cheering you on.
-  </p>
-
-  <p style="font-style:italic; margin-top:20px;">
-    "You are one of my favorite chapters, and I'm grateful our paths crossed." ♡
-  </p>
-
-  <p style="margin-top:25px; font-size:13px; opacity:0.7;">
-    P.S. You weren't supposed to find this so quickly. 🤭
-  </p>
+</div>
 
 </div>
 `,
@@ -407,21 +419,38 @@ I love you, always and in all ways. ♡
   }
   }
     function updateCountdown() {
-  const today = new Date();
-  let next = new Date(today.getFullYear(), 6, 27);
-
-  if (today > next) {
-    next.setFullYear(next.getFullYear() + 1);
-  }
-
-  const diff = Math.ceil((next - today) / (1000 * 60 * 60 * 24));
-
   const countdown = document.getElementById("countdown");
-  if (countdown) {
-    countdown.textContent =
-      diff + " days left until your next birthday. 🤍";
+  if (!countdown) return;
+
+  const now = new Date();
+
+  // Next birthday: July 27, 12:00:00 AM
+  let nextBirthday = new Date(now.getFullYear(), 6, 27, 0, 0, 0);
+
+  // Kung lumagpas na ngayong taon, next year na
+  if (now >= nextBirthday) {
+    nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
   }
-    }
+
+  const diff = nextBirthday.getTime() - now.getTime();
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  countdown.innerHTML = `
+    ${days}d ${hours}h ${minutes}m ${seconds}s
+    <br>
+    until your next birthday 🤍
+  `;
+}
+
+// Run once immediately
+updateCountdown();
+
+// Then update every second
+setInterval(updateCountdown, 1000);
   
 let currentPage = 0;
   
@@ -469,6 +498,15 @@ function unlock() {
         alert("Wrong password.");
     }
 }
+  function toggleMessage(id) {
+  const element = document.getElementById(id);
+
+  if (element.style.display === "none") {
+    element.style.display = "block";
+  } else {
+    element.style.display = "none";
+  }
+  }
 </script>
 
 </body>

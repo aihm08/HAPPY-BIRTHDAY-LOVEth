@@ -147,9 +147,9 @@ button {
 
     <div class="page-number" id="pageNum"></div>
 
-    <div class="title">
-      Hi love,
-    </div>
+<div class="title" id="letterTitle">
+  Hi love,
+</div>
 
     <div class="message" id="content"></div>
 
@@ -432,6 +432,12 @@ function showPage() {
 
   document.getElementById("pageNum").innerText =
     `Page ${currentPage + 1} of ${pages.length}`;
+
+  const title = document.getElementById("letterTitle");
+title.style.display = currentPage === 0 ? "block" : "none";
+
+  document.getElementById("prevBtn").style.visibility =
+  currentPage === 0 ? "hidden" : "visible";
 
   document.getElementById("nextBtn").innerText =
     currentPage === pages.length - 1

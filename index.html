@@ -257,10 +257,57 @@ Tap the button below to see the wish you made today. ✨
        min-height:50px;
      ">
 </div>
+</div>
+`,
+`
+<div style="text-align:center;">
+
+<h2>💖 Reasons I Love You</h2>
+
+<p>
+Here are just a few reasons why I chose you...
+</p>
+
+<ul style="text-align:left; line-height:2;">
+  <li>🌸 You make me feel safe.</li>
+  <li>🌸 You always make time for me.</li>
+  <li>🌸 You make ordinary days feel special.</li>
+  <li>🌸 You make me laugh even when I don't want to smile.</li>
+  <li>🌸 You stay, even when things aren't easy.</li>
+  <li>🌸 You support me and believe in me.</li>
+  <li>🌸 You remind me that love can feel peaceful.</li>
+  <li>🌸 Most of all... because you're simply you.</li>
+</ul>
+
+</div>
+`,
+
+`
+<div style="text-align:center;">
+
+<h2>🎂 Until Your Next Birthday</h2>
+
+<p id="countdown" style="font-size:22px;"></p>
+
+<script>
+(function () {
+  const today = new Date();
+  const next = new Date(today.getFullYear(), 6, 27); // July = month 6
+
+  if (today > next) {
+    next.setFullYear(next.getFullYear() + 1);
+  }
+
+  const diff = Math.ceil((next - today) / (1000 * 60 * 60 * 24));
+  document.getElementById("countdown").innerHTML =
+    diff + " days left until your next birthday. 🤍";
+})();
 
 </div>
 `
+
 ];
+
 
   function saveWish() {
   const wish = document.getElementById("wishBox").value;

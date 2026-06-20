@@ -642,17 +642,6 @@ I love you again, always and in all ways. ♡
   }, 2000);
   }
 
-  // fade out ng paper
-  document.querySelector(".paper").style.transition = "opacity 2s";
-  document.querySelector(".paper").style.opacity = "0";
-
-  // pagkatapos ng fade, ipakita ang jar
-  setTimeout(() => {
-    document.querySelector(".paper").style.display = "none";
-    document.getElementById("secretJar").style.display = "block";
-  }, 2000);
-}
-
 function openFarewell() {
   document.querySelector("#secretJar .jar").textContent = "💖";
   document.getElementById("farewellNote").style.display = "block";
@@ -732,10 +721,12 @@ function nextPage() {
   if (currentPage < pages.length - 1) {
     currentPage++;
     showPage();
-  } else {
-    showSecretEnding();
+
+    if (currentPage === pages.length - 1) {
+      setTimeout(showSecretEnding, 5000); // 5 seconds after reaching last page
+    }
   }
-}
+  }
 function prevPage() {
   if(currentPage > 0){
     currentPage--;

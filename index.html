@@ -143,6 +143,61 @@
   background:rgba(255,255,255,0.9);
   color:#222;
 }
+  /* Intro Overlay */
+#introOverlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.92);
+  z-index:99999;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+}
+
+#introGif{
+  width:220px;
+  border-radius:20px;
+  cursor:pointer;
+  animation:zoomFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes zoomFloat{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+}
+
+#feedText{
+  display:none;
+  margin-top:20px;
+  font-size:22px;
+}
+
+.treat{
+  position:fixed;
+  font-size:38px;
+  cursor:pointer;
+  user-select:none;
+  animation:popTreat .3s ease;
+}
+
+@keyframes popTreat{
+  from{
+    transform:scale(.5);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+#verifyMessage{
+  display:none;
+  margin-top:20px;
+  font-size:20px;
+}
   
 body {
   margin: 0;
@@ -266,6 +321,25 @@ button {
 </head>
 
 <body>
+
+  <div id="introOverlay">
+
+  <img
+    id="introGif"
+    src="dog.gif"
+    onclick="feedDog()"
+  >
+
+  <div id="feedText">
+    🍖 Feed the dog! Tap all the treats!
+  </div>
+
+  <div id="verifyMessage">
+    ✅ Verification Complete<br>
+    🐶 Certified Good Boy
+  </div>
+
+  </div>
 
 <div id="secretJar">
 
@@ -763,7 +837,7 @@ function unlock() {
 
     if (code === "0727") {
         document.getElementById("login").style.display = "none";
-        document.getElementById("letterPage").style.display = "flex";
+        document.getElementById("introOverlay").style.display = "flex";
         showPage();
     } else {
         alert("Wrong password.");
@@ -865,6 +939,59 @@ document.addEventListener("click", function(e) {
 
       setTimeout(() => spark.remove(), 1000);
     }
+}
+  let treatsLeft = 10;
+
+function feedDog(){
+
+  document.getElementById("feedText").style.display = "block";
+
+  document.getElementById("introGif").onclick = null;
+
+  const foods = ["🦴","🍖","🍗","🥩","🧀","🐾"];
+
+  for(let i=0;i<treatsLeft;i++){
+
+    const item=document.createElement("div");
+
+    item.className="treat";
+
+    item.textContent=
+      foods[Math.floor(Math.random()*foods.length)];
+
+    item.style.left=Math.random()*80+10+"vw";
+    item.style.top=Math.random()*70+15+"vh";
+
+    item.onclick=function(){
+
+      item.remove();
+
+      treatsLeft--;
+
+      if(treatsLeft===0){
+
+        document.getElementById("verifyMessage").style.display="block";
+
+        setTimeout(()=>{
+
+          document.getElementById("introOverlay").style.display="none";
+
+          document.getElementById("letterPage").style.display="flex";
+
+          showPage();
+
+          treatsLeft=10;
+
+        },1800);
+
+      }
+
+    };
+
+    document.body.appendChild(item);
+
+  }
+
 }
   }
 </script>

@@ -348,6 +348,32 @@ button {
 
 <body>
 
+<div id="rewardScreen" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000;
+  color:white;
+  z-index:999999;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+">
+  <h1>🐶 Good Boy, Love!</h1>
+
+  <p>You finished my little game. 🤍</p>
+
+  <p style="font-size:22px;">
+    So here's your reward... 💌
+  </p>
+
+  <button onclick="openReward()">
+    💖 Open My Letter
+  </button>
+</div>
+
   <div id="introOverlay">
 
   <button id="pawBtn" onclick="feedDog()">
@@ -877,6 +903,11 @@ function unlock() {
         alert("Wrong password.");
     }
 }
+  function openReward() {
+  document.getElementById("rewardScreen").style.display = "none";
+  document.getElementById("letterPage").style.display = "flex";
+  showPage();
+  }
   function toggleMessage(id) {
   const element = document.getElementById(id);
 
@@ -1001,20 +1032,32 @@ function feedDog() {
     item.style.top = Math.random() * 70 + 15 + "vh";
 
     item.onclick = function () {
-      item.remove();
-      treatsLeft--;
+  const messages = [
+    "🐶 Happy Birthday, my doggie!",
+    "🦴 Good boy! +1 treat!",
+    "🐕‍🦺 Tahol ka muna bago kumain!",
+    "🍖 Ang bilis mong ubusin yung pagkain ah!",
+    "🐾 I miss you my dogie!",
+    "🎂 Happy Bark day!",
+    "🍗 Walang share? Grabe ka!",
+    "🦮 Good pet! Deserve mo 'yan!"
+  ];
 
-      if (treatsLeft === 0) {
-        document.getElementById("feedText").style.display = "none";
-        document.getElementById("verifyMessage").style.display = "block";
+  alert(messages[Math.floor(Math.random() * messages.length)]);
 
-        setTimeout(() => {
-          document.getElementById("introOverlay").style.display = "none";
-          document.getElementById("letterPage").style.display = "flex";
-          showPage();
-        }, 1800);
-      }
-    };
+  item.remove();
+  treatsLeft--;
+
+  if (treatsLeft === 0) {
+    document.getElementById("feedText").style.display = "none";
+    document.getElementById("verifyMessage").style.display = "block";
+
+    setTimeout(() => {
+      document.getElementById("introOverlay").style.display = "none";
+      document.getElementById("rewardScreen").style.display = "flex";
+    }, 1800);
+  }
+};
 
     document.getElementById("introOverlay").appendChild(item);
   }

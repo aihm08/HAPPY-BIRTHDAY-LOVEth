@@ -974,9 +974,10 @@ document.addEventListener("click", function(e) {
 function feedDog() {
   document.getElementById("pawBtn").style.display = "none";
   document.getElementById("feedText").style.display = "block";
-document.getElementById("verifyMessage").style.display = "none";
-  document.getElementById("introGif").onclick = null;
+  document.getElementById("verifyMessage").style.display = "none";
 
+  // ...
+  }
   const foods = ["🦴","🍖","🍗","🥩","🧀","🐾"];
 
   for(let i=0;i<treatsLeft;i++){
@@ -1018,8 +1019,11 @@ document.getElementById("verifyMessage").style.display = "none";
     };
 
     document.body.appendChild(item);
-  
-  }
+
+  } // end of for loop
+
+} // end of feedDog function
+
 </script>
 
 </body>

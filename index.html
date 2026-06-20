@@ -491,19 +491,6 @@ Each envelope holds a little note just for you. ♡
   </audio>
 
 </div>
-
-const audio = document.getElementById("audio");
-const album = document.getElementById("album");
-
-function toggleMusic() {
-  if (audio.paused) {
-    audio.play();
-    album.style.animationPlayState = "running";
-  } else {
-    audio.pause();
-    album.style.animationPlayState = "paused";
-  }
-  }
 `,
 
 `
@@ -615,6 +602,21 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
   
 let currentPage = 0;
+
+  function toggleMusic() {
+  const audio = document.getElementById("audio");
+  const album = document.getElementById("album");
+
+  if (!audio || !album) return;
+
+  if (audio.paused) {
+    audio.play();
+    album.style.animationPlayState = "running";
+  } else {
+    audio.pause();
+    album.style.animationPlayState = "paused";
+  }
+  }
   
 function showPage() {
   document.getElementById("content").innerHTML = pages[currentPage];
@@ -756,17 +758,6 @@ document.addEventListener("click", function(e) {
 
       setTimeout(() => spark.remove(), 1000);
     }
-    const audio = document.getElementById("audio");
-const album = document.getElementById("album");
-
-function toggleMusic() {
-  if (audio.paused) {
-    audio.play();
-    album.style.animationPlayState = "running";
-  } else {
-    audio.pause();
-    album.style.animationPlayState = "paused";
-  }
 }
   }
 </script>

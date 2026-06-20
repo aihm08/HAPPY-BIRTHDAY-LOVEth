@@ -198,7 +198,26 @@
   margin-top:20px;
   font-size:20px;
 }
-  
+#pawBtn{
+  margin-top:15px;
+  padding:12px 24px;
+  font-size:20px;
+  border:none;
+  border-radius:50px;
+  background:#fff;
+  color:#000;
+  cursor:pointer;
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{
+    transform:scale(1);
+  }
+  50%{
+    transform:scale(1.08);
+  }
+}
 body {
   margin: 0;
   background: #000;
@@ -323,6 +342,10 @@ button {
 <body>
 
   <div id="introOverlay">
+
+  <button id="pawBtn" onclick="feedDog()">
+  🐾 Feed Me
+  </button>
 
   <video
   id="introGif"
@@ -947,10 +970,9 @@ document.addEventListener("click", function(e) {
 }
   let treatsLeft = 10;
 
-function feedDog(){
-
-  document.getElementById("feedText").style.display = "block";
-
+function feedDog() {
+  document.getElementById("pawBtn").style.display = "none";
+  
   document.getElementById("introGif").onclick = null;
 
   const foods = ["🦴","🍖","🍗","🥩","🧀","🐾"];

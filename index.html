@@ -56,17 +56,6 @@
   z-index: 1;
   animation: shoot 1s linear forwards;
 }
-
-@keyframes shoot {
-  from {
-    transform: translate(0, 0) rotate(45deg);
-    opacity: 1;
-  }
-  to {
-    transform: translate(300px, 300px) rotate(45deg);
-    opacity: 0;
-  }
-}
   @keyframes shoot {
   from {
     transform: translate(0, 0) rotate(45deg);
@@ -713,24 +702,28 @@ document.addEventListener("click", function(e) {
     hint.textContent = "✨ Tap to pull the letter out.";
   } else {
     letter.style.display = "block";
-    const openedIcons = ["💖","🌸","💌","🩷","✨"];
+
+const openedIcons = ["💖","🌸","💌","🩷","✨"];
 icon.textContent =
   openedIcons[Math.floor(Math.random() * openedIcons.length)];
-    hint.textContent = "💖 You've opened this little note.";
-  }
-}
-  for(let i = 0; i < 12; i++){
+
+hint.textContent = "💖 You've opened this little note.";
+
+// Spark effect
+for (let i = 0; i < 12; i++) {
   const spark = document.createElement("div");
-  spark.textContent = ["✨","🌸","💖","⭐"][Math.floor(Math.random()*4)];
+  spark.textContent = ["✨", "🌸", "💖", "⭐"][Math.floor(Math.random() * 4)];
   spark.style.position = "fixed";
-  spark.style.left = (window.innerWidth/2 + (Math.random()*120-60)) + "px";
-  spark.style.top = (window.innerHeight/2 + (Math.random()*120-60)) + "px";
+  spark.style.left = (window.innerWidth / 2 + (Math.random() * 120 - 60)) + "px";
+  spark.style.top = (window.innerHeight / 2 + (Math.random() * 120 - 60)) + "px";
   spark.style.fontSize = "20px";
   spark.style.pointerEvents = "none";
   spark.style.animation = "fadeStar 1s forwards";
+
   document.body.appendChild(spark);
+
   setTimeout(() => spark.remove(), 1000);
-  }
+}
 </script>
 
 </body>

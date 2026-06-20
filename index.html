@@ -119,12 +119,15 @@
 #secretJar{
   display:none;
   position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+  inset:0;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
   text-align:center;
+  background:rgba(0,0,0,0.35);
   z-index:9999;
   animation:popOpen .6s ease;
+}
 }
 
 #secretJar .jar{
@@ -554,11 +557,6 @@ Each envelope holds a little note just for you. ♡
   <p id="countdown" style="font-size:22px; font-weight:bold;"></p>
 </div>
 `,
-  
-`
-<div style="text-align:center; padding:30px;">
-
-`,
 `
 <div id="farewellPage" style="text-align:center; padding:30px;">
 
@@ -567,8 +565,6 @@ Each envelope holds a little note just for you. ♡
   <p>Thank you for reading everything, love.</p>
 
   <p>Stay here for a little surprise... ✨</p>
-
-</div>
 
 <br><br>
 
@@ -633,10 +629,18 @@ I love you again, always and in all ways. ♡
   }
   }
   function showSecretEnding() {
-
-  // mas maraming shooting stars
   for (let i = 0; i < 15; i++) {
     setTimeout(createShootingStar, i * 200);
+  }
+
+  const paper = document.querySelector(".paper");
+  paper.style.transition = "opacity 2s";
+  paper.style.opacity = "0";
+
+  setTimeout(() => {
+    paper.style.display = "none";
+    document.getElementById("secretJar").style.display = "flex";
+  }, 2000);
   }
 
   // fade out ng paper
@@ -651,7 +655,9 @@ I love you again, always and in all ways. ♡
 }
 
 function openFarewell() {
+  document.querySelector("#secretJar .jar").textContent = "💖";
   document.getElementById("farewellNote").style.display = "block";
+}
 }
     function updateCountdown() {
   const countdown = document.getElementById("countdown");
@@ -726,23 +732,14 @@ title.style.display = currentPage === 0 ? "block" : "none";
 
 function nextPage() {
 
+  function nextPage() {
   if (currentPage < pages.length - 1) {
-
     currentPage++;
-
-    if (currentPage === pages.length - 1) {
-      showPage();
-
-      setTimeout(() => {
-        showSecretEnding();
-      }, 5000); // 5 seconds bago mag-fade
-    } else {
-      showPage();
-    }
+    showPage();
+  } else {
+    showSecretEnding();
   }
-
-}
-
+  }
 function prevPage() {
   if(currentPage > 0){
     currentPage--;

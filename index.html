@@ -116,6 +116,31 @@
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
+#secretJar{
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  z-index:9999;
+  animation:popOpen .6s ease;
+}
+
+#secretJar .jar{
+  font-size:90px;
+  cursor:pointer;
+}
+
+#farewellNote{
+  display:none;
+  margin-top:20px;
+  max-width:320px;
+  padding:20px;
+  border-radius:15px;
+  background:rgba(255,255,255,0.9);
+  color:#222;
+}
   
 body {
   margin: 0;
@@ -240,6 +265,39 @@ button {
 
 <body>
 
+<div id="secretJar">
+
+  <div class="jar" onclick="openFarewell()">
+    🫙
+  </div>
+
+  <p>✨ Click me ✨</p>
+
+  <div id="farewellNote">
+    <h3>💌 One Last Note</h3>
+
+    <p>
+      If you've reached this point,
+      thank you for reading everything.
+    </p>
+
+    <p>
+      I made this little website hoping it would make
+      your birthday a little more special.
+    </p>
+
+    <p>
+      I hope life is kind to you, your dreams come true,
+      and you never forget how loved you are.
+    </p>
+
+    <p>
+      Happy Birthday, love. ♡
+    </p>
+  </div>
+
+</div>
+
 <div id="stars"></div>
 
 <button id="surpriseBtn" onclick="surpriseMe()">
@@ -331,8 +389,6 @@ It's your birthday today love.
 
 So make a wish ✨
 
-write down ur birthday wish.
-
 I hope it comes true. ♡
 
 <br><br>
@@ -354,7 +410,7 @@ I hope it comes true. ♡
 <h2>🫙 Wish Jar</h2>
 
 <p>
-Your wish is accepted..
+Na send na love, Hintayin mo na lang kung kailan magre reply si lord. ♡
 </p>
 
 <div style="font-size:80px; margin:20px 0;">
@@ -502,7 +558,17 @@ Each envelope holds a little note just for you. ♡
 `
 <div style="text-align:center; padding:30px;">
 
-<h1>🌸 The End</h1>
+`,
+`
+<div id="farewellPage" style="text-align:center; padding:30px;">
+
+  <h1>🌸 The End</h1>
+
+  <p>Thank you for reading everything, love.</p>
+
+  <p>Stay here for a little surprise... ✨</p>
+
+</div>
 
 <br><br>
 
@@ -566,6 +632,27 @@ I love you again, always and in all ways. ♡
     box.innerHTML = "🫙 The wish jar is empty.";
   }
   }
+  function showSecretEnding() {
+
+  // mas maraming shooting stars
+  for (let i = 0; i < 15; i++) {
+    setTimeout(createShootingStar, i * 200);
+  }
+
+  // fade out ng paper
+  document.querySelector(".paper").style.transition = "opacity 2s";
+  document.querySelector(".paper").style.opacity = "0";
+
+  // pagkatapos ng fade, ipakita ang jar
+  setTimeout(() => {
+    document.querySelector(".paper").style.display = "none";
+    document.getElementById("secretJar").style.display = "block";
+  }, 2000);
+}
+
+function openFarewell() {
+  document.getElementById("farewellNote").style.display = "block";
+}
     function updateCountdown() {
   const countdown = document.getElementById("countdown");
   if (!countdown) return;
@@ -638,10 +725,22 @@ title.style.display = currentPage === 0 ? "block" : "none";
 }
 
 function nextPage() {
-  if(currentPage < pages.length - 1){
+
+  if (currentPage < pages.length - 1) {
+
     currentPage++;
-    showPage();
+
+    if (currentPage === pages.length - 1) {
+      showPage();
+
+      setTimeout(() => {
+        showSecretEnding();
+      }, 5000); // 5 seconds bago mag-fade
+    } else {
+      showPage();
+    }
   }
+
 }
 
 function prevPage() {

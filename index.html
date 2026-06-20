@@ -713,24 +713,23 @@ hint.textContent = "💖 You've opened this little note.";
 for (let i = 0; i < 12; i++) {
   const spark = document.createElement("div");
   spark.textContent = ["✨", "🌸", "💖", "⭐"][Math.floor(Math.random() * 4)];
-
   spark.style.position = "fixed";
-  spark.style.left = (window.innerWidth / 2 + (Math.random() * 120 - 60)) + "px";
-  spark.style.top = (window.innerHeight / 2 + (Math.random() * 120 - 60)) + "px";
+  spark.style.left =
+    (window.innerWidth / 2 + (Math.random() * 120 - 60)) + "px";
+  spark.style.top =
+    (window.innerHeight / 2 + (Math.random() * 120 - 60)) + "px";
   spark.style.fontSize = "20px";
   spark.style.pointerEvents = "none";
-  spark.style.transition = "all 1s ease";
-  spark.style.zIndex = "9999";
+  spark.style.animation = "fadeStar 1s forwards";
 
   document.body.appendChild(spark);
 
   setTimeout(() => {
-    spark.style.transform = `translate(${Math.random()*200-100}px, ${Math.random()*200-100}px) scale(1.5)`;
-    spark.style.opacity = "0";
-  }, 10);
-
-  setTimeout(() => spark.remove(), 1000);
+    spark.remove();
+  }, 1000);
 }
+  }
+  }
 </script>
 
 </body>

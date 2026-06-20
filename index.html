@@ -1096,49 +1096,50 @@ function feedDog() {
     item.style.top = Math.random() * 70 + 15 + "vh";
 
     item.onclick = function () {
-  const messages = [
-    "🐶 Happy Birthday, my doggie!",
-    "🦴 Good boy! +1 treat!",
-    "🐕‍🦺 Tahol ka muna bago kumain!",
-    "🍖 Ang bilis mong ubusin yung pagkain ah!",
-    "🐾 I miss you my dogie!",
-    "🎂 Happy Bark day!",
-    "🍗 Walang share? Grabe ka!",
-    "🦮 Good pet! Deserve mo 'yan!"
-  ];
+      const messages = [
+        "🐶 Happy Birthday, my doggie!",
+        "🦴 Good boy! +1 treat!",
+        "🐕‍🦺 Tahol ka muna bago kumain!",
+        "🍖 Ang bilis mong ubusin yung pagkain ah!",
+        "🐾 I miss you my dogie!",
+        "🎂 Happy Bark Day!",
+        "🍗 Walang share? Grabe ka!",
+        "🦮 Good pet! Deserve mo 'yan!"
+      ];
 
-  alert(messages[Math.floor(Math.random() * messages.length)]);
+      alert(messages[Math.floor(Math.random() * messages.length)]);
 
-  item.remove();
-  treatsLeft--;
+      item.remove();
+      treatsLeft--;
 
-  if (treatsLeft === 0) {
-  document.getElementById("feedText").innerHTML = `
-    <h1> Good Boy, Love! </h1>
+      if (treatsLeft === 0) {
+        document.getElementById("feedText").innerHTML = `
+          <h1>🐶 Good Boy, Love!</h1>
 
-    <div style="
-      font-size:100px;
-      animation:bounce 0.8s infinite;
-      margin:20px 0;
-    ">
-      🎂
-    </div>
+          <div style="
+            font-size:100px;
+            animation:bounce 0.8s infinite;
+            margin:20px 0;
+          ">
+            🎂
+          </div>
 
-    <p>Here's your reward... </p>
-  `;
+          <p>Here's your reward... 💌</p>
+        `;
 
-  document.getElementById("feedText").style.display = "block";
+        document.getElementById("feedText").style.display = "block";
 
-  setTimeout(() => {
-    document.getElementById("introOverlay").style.display = "none";
-    document.getElementById("letterPage").style.display = "flex";
-    showPage();
-  }, 3000);
-  }
+        setTimeout(() => {
+          document.getElementById("introOverlay").style.display = "none";
+          document.getElementById("letterPage").style.display = "flex";
+          showPage();
+        }, 3000);
+      }
+    };
 
     document.getElementById("introOverlay").appendChild(item);
   }
-  }
+}
 
 </script>
 

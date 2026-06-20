@@ -738,47 +738,37 @@ Each envelope holds a little note just for you. ♡
 </div>
 `,
 `
-<div id="farewellPage" style="text-align:center; padding:30px;">
+<div style="text-align:center; padding:30px;">
 
-  <h1>🌸 The End</h1>
+  <h1>🎁 My Gift for You</h1>
 
-  <p>Thank you for reading everything, love.</p>
+  <p>Tap the teddy for your last hug 🧸</p>
 
-  <p>Stay here for a little surprise... ✨</p>
+  <div id="plushie"
+       onclick="hugBearFinal()"
+       style="
+         font-size:110px;
+         cursor:pointer;
+         animation:bounce 1s infinite;
+         margin:20px 0;
+       ">
+    🧸
+  </div>
 
-<br><br>
+  <p id="finalMessage" style="display:none; font-size:18px; margin-top:20px;">
+    Sending you big virtual hug...<br>
+    I love you always and in all ways. ♡
+  </p>
 
-<button onclick="alert('🌸 I love you. And if you ever revisit this page years from now, know that I smiled while making it just for you.')">
-  🌙 One Last Secret
-</button>
-
-<button onclick="window.scrollTo({top:0, behavior:'smooth'})">
-⬆️ Read it again
-</button>
-
-<p>
-Thank you love for taking the time to read everything.
-</p>
-
-<p>
-I hope this little Gift website I made make you smile love, I love you!
-</p>
-
-<p style="margin-top:20px;">
-No matter how many years pass,<br>
-Remember I'm always grateful that our paths crossed. mwaa!
-</p>
-
-<h2 style="margin-top:30px;">
-Happy Birthday, Love. 🎂
-</h2>
-
-<p>
-I love you again, always and in all ways. ♡
-</p>
+  <button id="finalBtn"
+          onclick="hugBearFinal()"
+          style="display:none; margin-top:20px;">
+    🫂 Hug Me Again
+  </button>
 
 </div>
-`
+`.
+
 ];
 
   function saveWish() {
@@ -974,6 +964,16 @@ function startTypewriter() {
     }
   }, 70);
 }
+  function hugBearFinal() {
+  document.getElementById("finalMessage").style.display = "block";
+
+  const btn = document.getElementById("finalBtn");
+  btn.style.display = "none";
+
+  setTimeout(() => {
+    btn.style.display = "inline-block";
+  }, 10000);
+  }
 
 function startGame() {
   document.getElementById("welcomeScreen").style.display = "none";

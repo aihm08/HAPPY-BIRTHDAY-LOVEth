@@ -979,15 +979,15 @@ document.addEventListener("click", function(e) {
   let treatsLeft = 10;
 
 function feedDog() {
-  // Itago ang GIF at button
-  document.getElementById("introGif").style.display = "none";
-  document.getElementById("pawBtn").style.display = "none";
+  const video = document.getElementById("introGif");
+  video.pause();
+  video.style.display = "none";
 
-  // Ipakita ang instruction
+  document.getElementById("pawBtn").style.display = "none";
   document.getElementById("feedText").style.display = "block";
   document.getElementById("verifyMessage").style.display = "none";
 
-  treatsLeft = 10; // I-reset ang bilang ng treats
+  treatsLeft = 10;
 
   const foods = ["🦴", "🍖", "🍗", "🥩", "🧀", "🐾"];
 
@@ -995,8 +995,7 @@ function feedDog() {
     const item = document.createElement("div");
 
     item.className = "treat";
-    item.textContent =
-      foods[Math.floor(Math.random() * foods.length)];
+    item.textContent = foods[Math.floor(Math.random() * foods.length)];
 
     item.style.left = Math.random() * 80 + 10 + "vw";
     item.style.top = Math.random() * 70 + 15 + "vh";
@@ -1017,9 +1016,9 @@ function feedDog() {
       }
     };
 
-    document.body.appendChild(item);
+    document.getElementById("introOverlay").appendChild(item);
   }
-}
+  }
 
 </script>
 

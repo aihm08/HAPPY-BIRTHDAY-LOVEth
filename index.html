@@ -77,6 +77,51 @@
     opacity: 0;
   }
   }
+  .mini-envelope{
+  background:#f8f3ea;
+  color:#222;
+  border-radius:14px;
+  padding:18px;
+  margin:18px 0;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 6px 15px rgba(0,0,0,.15);
+}
+
+.mini-envelope:hover{
+  transform:translateY(-3px);
+}
+
+.envelope-icon{
+  font-size:32px;
+  margin-bottom:8px;
+}
+
+.tap-text{
+  font-size:12px;
+  opacity:.7;
+}
+
+.mini-letter{
+  display:none;
+  margin-top:15px;
+  padding:15px;
+  background:#fffdf8;
+  border-radius:10px;
+  border-top:3px solid #d8cbb5;
+  animation:slideDown .35s ease;
+}
+
+@keyframes slideDown{
+  from{
+    opacity:0;
+    transform:translateY(-15px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
   
 body {
   margin: 0;
@@ -345,54 +390,67 @@ Tap the button below to see the wish you made today. ✨
 <h2>💌 Read This When...</h2>
 
 <p style="opacity:0.8;">
-Tap any title below to reveal a little note. ♡
+Each envelope holds a little note just for you. ♡
 </p>
 
-<hr>
+<div class="mini-envelope" onclick="toggleLetter('letter1', this)">
+  <div class="envelope-icon">💌</div>
+  <strong>Read this when you're doubting yourself</strong>
+  <p class="tap-text">✨ Tap to pull the letter out.</p>
 
-<h3 onclick="toggleMessage('msg1')" style="cursor:pointer;">
-🔥 Read this when you're doubting yourself
-</h3>
-<div id="msg1" style="display:none; margin-bottom:20px;">
-  You're stronger and more capable than you think. I believe in you love, even on the days when you don't believe in yourself.
+  <div id="letter1" class="mini-letter">
+    <p>
+      You're stronger and more capable than you think love.
+      I believe in you even on the days when you don't
+      believe in yourself. ♡
+    </p>
+    <small>With love,<br>Mhia ♡</small>
+  </div>
 </div>
 
-<hr>
+<div class="mini-envelope" onclick="toggleLetter('letter2', this)">
+  <div class="envelope-icon">💌</div>
+  <strong>Read this when you miss me</strong>
+  <p class="tap-text">✨ Tap to pull the letter out.</p>
 
-<h3 onclick="toggleMessage('msg2')" style="cursor:pointer;">
-🌸 Read this when you miss me
-</h3>
-<div id="msg2" style="display:none; margin-bottom:20px;">
-  There's a good chance I'm missing you too love. Just remember that you're always in my thoughts. ♡
+  <div id="letter2" class="mini-letter">
+    <p>
+      Because I always Miss my dogiee, Mwaa!!. 🌸
+    </p>
+    <small>With love,<br>Mhia ♡</small>
+  </div>
 </div>
 
-<hr>
+<div class="mini-envelope" onclick="toggleLetter('letter3', this)">
+  <div class="envelope-icon">💌</div>
+  <strong>Read this when you're having a hard day</strong>
+  <p class="tap-text">✨ Tap to pull the letter out.</p>
 
-<h3 onclick="toggleMessage('msg3')" style="cursor:pointer;">
-🍀 Read this when you're having a hard day
-</h3>
-<div id="msg3" style="display:none; margin-bottom:20px;">
-  You don't have to carry everything alone love. Rest if you need to, and remember that tomorrow is another chance to start again. (wuy motivation yarn lol)
+  <div id="letter3" class="mini-letter">
+    <p>
+      You don't have to carry everything alone Love.
+      Rest if you need to, and remember that I'm always here.
+    </p>
+    <small>With love,<br>Mhia ♡</small>
+  </div>
 </div>
 
-<hr>
+<div class="mini-envelope" onclick="toggleLetter('letter4', this)">
+  <div class="envelope-icon">💌</div>
+  <strong>Read this on your next birthday</strong>
+  <p class="tap-text">✨ Tap to pull the letter out.</p>
 
-<h3 onclick="toggleMessage('msg4')" style="cursor:pointer;">
-🎂 Read this on your next birthday
-</h3>
-<div id="msg4" style="display:none; margin-bottom:20px;">
-  I hope you're smiling love, chasing your dreams, and surrounded by people who love you. I hope this little website still makes you happy.
+  <div id="letter4" class="mini-letter">
+    <p>
+      I hope you're smiling, chasing your dreams,
+      and surrounded by people who truly care about you. I love you!! 🎂
+    </p>
+    <small>With love,<br>Mhia ♡</small>
+  </div>
+
 </div>
-
-<hr>
-
-<h3 onclick="toggleMessage('msg5')" style="cursor:pointer;">
-❤️‍🩹 Read this whenever you forget how much you're loved
-</h3>
-<div id="msg5" style="display:none; margin-bottom:20px;">
-  Always remember love you matter to me more than words can explain. Thank you for being you. I lovee you mwaa!!
-</div>
-
+`,
+`
 <hr>
 
 <h3 onclick="toggleMessage('secret')" style="cursor:pointer;">
@@ -640,6 +698,21 @@ document.addEventListener("click", function(e) {
     createShootingStar();
   }
 }, 1200);
+  function toggleLetter(id, card) {
+  const letter = document.getElementById(id);
+  const icon = card.querySelector(".envelope-icon");
+  const hint = card.querySelector(".tap-text");
+
+  if (letter.style.display === "block") {
+    letter.style.display = "none";
+    icon.textContent = "💌";
+    hint.textContent = "✨ Tap to pull the letter out.";
+  } else {
+    letter.style.display = "block";
+    icon.textContent = "📬";
+    hint.textContent = "💖 You've opened this little note.";
+  }
+}
 </script>
 
 </body>

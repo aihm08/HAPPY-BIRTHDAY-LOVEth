@@ -552,8 +552,16 @@ Each envelope holds a little note just for you. ♡
 
 `
 <div style="text-align:center;">
-  <h2>Until Your Next Birthday</h2>
-  <p id="countdown" style="font-size:22px; font-weight:bold;"></p>
+  <h2>Until Your Next Birthday 🎂</h2>
+
+  <div id="countdown" style="
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:20px;
+  ">
+  </div>
 </div>
 `,
 `
@@ -646,32 +654,49 @@ function openFarewell() {
   document.querySelector("#secretJar .jar").textContent = "⭐";
   document.getElementById("farewellNote").style.display = "block";
 }
-    function updateCountdown() {
+function updateCountdown() {
   const countdown = document.getElementById("countdown");
   if (!countdown) return;
 
   const now = new Date();
+  let nextBirthday = new Date(now.getFullYear(), 6, 27);
 
-  // Next birthday: July 27, 12:00:00 AM
-  let nextBirthday = new Date(now.getFullYear(), 6, 27, 0, 0, 0);
-
-  // Kung lumagpas na ngayong taon, next year na
   if (now >= nextBirthday) {
     nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
   }
 
-  const diff = nextBirthday.getTime() - now.getTime();
+  const diff = nextBirthday - now;
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor(diff / 3600000) % 24;
+  const minutes = Math.floor(diff / 60000) % 60;
+  const seconds = Math.floor(diff / 1000) % 60;
 
-  countdown.innerHTML = `
-    ${days}d ${hours}h ${minutes}m ${seconds}s
-    <br>
-    I love you!! 🌸
-  `;
+  function box(value, label) {
+    return `
+      <div style="
+        background:#111;
+        color:white;
+        padding:12px;
+        border-radius:12px;
+        min-width:70px;
+        box-shadow:0 4px 10px rgba(0,0,0,.3);
+      ">
+        <div style="font-size:28px;font-weight:bold;">
+          ${String(value).padStart(2,"0")}
+        </div>
+        <div style="font-size:12px;opacity:.7;">
+          ${label}
+        </div>
+      </div>
+    `;
+  }
+
+  countdown.innerHTML =
+    box(days, "Days") +
+    box(hours, "Hours") +
+    box(minutes, "Minutes") +
+    box(seconds, "Seconds");
 }
 
 // Run once immediately
@@ -721,12 +746,10 @@ function nextPage() {
   if (currentPage < pages.length - 1) {
     currentPage++;
     showPage();
-
-    if (currentPage === pages.length - 1) {
-      setTimeout(showSecretEnding, 5000); // 5 seconds after reaching last page
-    }
+  } else {
+    showSecretEnding();
   }
-  }
+}
 function prevPage() {
   if(currentPage > 0){
     currentPage--;

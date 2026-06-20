@@ -458,7 +458,7 @@ Each envelope holds a little note just for you. ♡
   <!-- Album Cover -->
   <img
     id="album"
-    src="image/paramoree.jpg"
+    src="paramoree.jpg"
     style="
       width:140px;
       height:140px;
@@ -745,20 +745,19 @@ hint.textContent = "💖 You've opened this little note.";
 // Spark effect
 for (let i = 0; i < 12; i++) {
   const spark = document.createElement("div");
-  spark.textContent = ["✨", "🌸", "💖", "⭐"][Math.floor(Math.random() * 4)];
+  spark.textContent = "✨";
   spark.style.position = "fixed";
-  spark.style.left =
-    (window.innerWidth / 2 + (Math.random() * 120 - 60)) + "px";
-  spark.style.top =
-    (window.innerHeight / 2 + (Math.random() * 120 - 60)) + "px";
-  spark.style.fontSize = "20px";
+  spark.style.left = Math.random() * window.innerWidth + "px";
+  spark.style.top = Math.random() * window.innerHeight + "px";
+  spark.style.fontSize = "14px";
+  spark.style.opacity = "1";
+  spark.style.pointerEvents = "none";
   spark.style.animation = "fadeStar 1s forwards";
-document.body.appendChild(spark);
 
-setTimeout(() => {
-  spark.remove();
-}, 1000);
-  }
+  document.body.appendChild(spark);
+
+  setTimeout(() => spark.remove(), 1000);
+}
   <script>
 const audio = document.getElementById("audio");
 const album = document.getElementById("album");

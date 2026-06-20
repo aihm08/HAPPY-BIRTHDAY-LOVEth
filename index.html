@@ -979,17 +979,24 @@ document.addEventListener("click", function(e) {
   let treatsLeft = 10;
 
 function feedDog() {
+  // Itago ang GIF at button
+  document.getElementById("introGif").style.display = "none";
   document.getElementById("pawBtn").style.display = "none";
+
+  // Ipakita ang instruction
   document.getElementById("feedText").style.display = "block";
   document.getElementById("verifyMessage").style.display = "none";
 
-  const foods = ["🦴","🍖","🍗","🥩","🧀","🐾"];
+  treatsLeft = 10; // I-reset ang bilang ng treats
+
+  const foods = ["🦴", "🍖", "🍗", "🥩", "🧀", "🐾"];
 
   for (let i = 0; i < treatsLeft; i++) {
     const item = document.createElement("div");
 
     item.className = "treat";
-    item.textContent = foods[Math.floor(Math.random() * foods.length)];
+    item.textContent =
+      foods[Math.floor(Math.random() * foods.length)];
 
     item.style.left = Math.random() * 80 + 10 + "vw";
     item.style.top = Math.random() * 70 + 15 + "vh";
@@ -999,20 +1006,20 @@ function feedDog() {
       treatsLeft--;
 
       if (treatsLeft === 0) {
+        document.getElementById("feedText").style.display = "none";
         document.getElementById("verifyMessage").style.display = "block";
 
         setTimeout(() => {
           document.getElementById("introOverlay").style.display = "none";
           document.getElementById("letterPage").style.display = "flex";
           showPage();
-          treatsLeft = 10;
         }, 1800);
       }
     };
 
     document.body.appendChild(item);
   }
-    }
+}
 
 </script>
 

@@ -225,6 +225,14 @@
   flex-wrap: wrap;
   margin-top: 20px;
   }
+  @keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  }
 body {
   margin: 0;
   background: #000;
@@ -363,17 +371,48 @@ button {
 ">
   <h1>🐶 Good Boy, Love!</h1>
 
-  <p>You finished my little game. 🤍</p>
+  <p>You finished my little game, mwa!!</p>
 
   <p style="font-size:22px;">
     So here's your reward... 💌
   </p>
 
   <button onclick="openReward()">
-    💖 Open My Letter
+    For you
   </button>
 </div>
+<div id="welcomeScreen" style="
+display:none;
+position:fixed;
+inset:0;
+background:#000;
+color:white;
+z-index:999999;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+">
 
+  <h1 id="typewriter" style="font-size:42px;"></h1>
+
+  <button
+    id="playBtn"
+    onclick="startGame()"
+    style="
+      display:none;
+      margin-top:30px;
+      padding:14px 28px;
+      border:none;
+      border-radius:30px;
+      font-size:20px;
+      cursor:pointer;
+    ">
+     Let's Play First, Love 🌸
+  </button>
+
+</div>
   <div id="introOverlay">
 
   <button id="pawBtn" onclick="feedDog()">
@@ -395,8 +434,8 @@ button {
   </div>
 
   <div id="verifyMessage">
-    ✅ Verification Complete<br>
-    🐶 Certified Good Boy
+    Verification Complete<br>
+    Good Dogie
   </div>
 
   </div>
@@ -897,8 +936,8 @@ function unlock() {
 
     if (code === "0727") {
         document.getElementById("login").style.display = "none";
-        document.getElementById("introOverlay").style.display = "flex";
-        showPage();
+        document.getElementById("welcomeScreen").style.display = "flex";
+        startTypewriter();
     } else {
         alert("Wrong password.");
     }
@@ -917,6 +956,31 @@ function unlock() {
     element.style.display = "none";
   }
   }
+  const birthdayText =
+" Happy Birthday, Loveee! 🎂";
+
+let typeIndex = 0;
+
+function startTypewriter() {
+  const el = document.getElementById("typewriter");
+  el.innerHTML = "";
+  typeIndex = 0;
+
+  const timer = setInterval(() => {
+    el.innerHTML += birthdayText[typeIndex];
+    typeIndex++;
+
+    if (typeIndex >= birthdayText.length) {
+      clearInterval(timer);
+      document.getElementById("playBtn").style.display = "inline-block";
+    }
+  }, 70);
+}
+
+function startGame() {
+  document.getElementById("welcomeScreen").style.display = "none";
+  document.getElementById("introOverlay").style.display = "flex";
+}
   function surpriseMe() {
   const surprises = [
     "💙 Virtual hug sent!",
@@ -1049,15 +1113,28 @@ function feedDog() {
   treatsLeft--;
 
   if (treatsLeft === 0) {
-    document.getElementById("feedText").style.display = "none";
-    document.getElementById("verifyMessage").style.display = "block";
+  document.getElementById("feedText").innerHTML = `
+    <h1> Good Boy, Love! </h1>
 
-    setTimeout(() => {
-      document.getElementById("introOverlay").style.display = "none";
-      document.getElementById("rewardScreen").style.display = "flex";
-    }, 1800);
+    <div style="
+      font-size:100px;
+      animation:bounce 0.8s infinite;
+      margin:20px 0;
+    ">
+      🎂
+    </div>
+
+    <p>Here's your reward... </p>
+  `;
+
+  document.getElementById("feedText").style.display = "block";
+
+  setTimeout(() => {
+    document.getElementById("introOverlay").style.display = "none";
+    document.getElementById("letterPage").style.display = "flex";
+    showPage();
+  }, 3000);
   }
-};
 
     document.getElementById("introOverlay").appendChild(item);
   }

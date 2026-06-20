@@ -759,6 +759,19 @@ setTimeout(() => {
   spark.remove();
 }, 1000);
   }
+  <script>
+const audio = document.getElementById("audio");
+const album = document.getElementById("album");
+
+function toggleMusic() {
+  if (audio.paused) {
+    audio.play();
+    album.style.animationPlayState = "running";
+  } else {
+    audio.pause();
+    album.style.animationPlayState = "paused";
+  }
+}
   }
 </script>
 

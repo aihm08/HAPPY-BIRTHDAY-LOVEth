@@ -109,17 +109,17 @@
   background:#fffdf8;
   border-radius:10px;
   border-top:3px solid #d8cbb5;
-  animation:slideDown .35s ease;
+  animation:popOpen .4s ease;
 }
 
-@keyframes slideDown{
-  from{
+@keyframes popOpen{
+  0%{
     opacity:0;
-    transform:translateY(-15px);
+    transform:scale(.9);
   }
-  to{
+  100%{
     opacity:1;
-    transform:translateY(0);
+    transform:scale(1);
   }
 }
   
@@ -709,7 +709,9 @@ document.addEventListener("click", function(e) {
     hint.textContent = "✨ Tap to pull the letter out.";
   } else {
     letter.style.display = "block";
-    icon.textContent = "📬";
+    const openedIcons = ["💖","🌸","💌","🩷","✨"];
+icon.textContent =
+  openedIcons[Math.floor(Math.random() * openedIcons.length)];;
     hint.textContent = "💖 You've opened this little note.";
   }
 }

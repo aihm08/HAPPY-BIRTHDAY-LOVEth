@@ -722,7 +722,9 @@ for (let i = 0; i < 12; i++) {
 
   document.body.appendChild(spark);
 
-  setTimeout(() => spark.remove(), 1000);
+  setTimeout(() => {
+    spark.remove();
+  }, 1000);
 }
 </script>
 

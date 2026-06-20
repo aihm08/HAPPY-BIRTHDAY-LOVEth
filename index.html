@@ -324,11 +324,16 @@ button {
 
   <div id="introOverlay">
 
-  <img
-    id="introGif"
-    src="dog.gif"
-    onclick="feedDog()"
-  >
+  <video
+  id="introGif"
+  onclick="feedDog()"
+  autoplay
+  muted
+  loop
+  playsinline
+>
+  <source src="dog.mp4" type="video/mp4">
+  </video>
 
   <div id="feedText">
     🍖 Feed the dog! Tap all the treats!

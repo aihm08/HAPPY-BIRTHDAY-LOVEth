@@ -453,17 +453,13 @@ Each envelope holds a little note just for you. ♡
 ">
 
 <!-- Album Cover -->
-<img id="album"
-     src="Paramore.jpg"
-     style="
-        width:140px;
-        height:140px;
-        border-radius:50%;
-        object-fit:cover;
-        animation:spin 4s linear infinite;
-        animation-play-state:paused;
-        box-shadow:0 10px 20px rgba(0,0,0,0.3);
-     ">
+<ImageView
+    android:id="@+id/album"
+    android:layout_width="140dp"
+    android:layout_height="140dp"
+    android:src="@drawable/paramoree"
+    android:scaleType="centerCrop"
+    android:layout_gravity="center" />
 
 <h4 style="margin-top:15px;">💿 Love Recording</h4>
 <p style="font-size:12px; opacity:0.7;">Tap play to listen...</p>

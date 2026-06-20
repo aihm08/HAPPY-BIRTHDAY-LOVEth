@@ -349,7 +349,6 @@ button {
 
   <video
   id="introGif"
-  onclick="feedDog()"
   autoplay
   muted
   loop
@@ -967,12 +966,13 @@ document.addEventListener("click", function(e) {
 
       setTimeout(() => spark.remove(), 1000);
     }
+  }
 }
   let treatsLeft = 10;
 
 function feedDog() {
   document.getElementById("pawBtn").style.display = "none";
-  document.getElementById("feedText").style.display = "none";
+  document.getElementById("feedText").style.display = "block";
 document.getElementById("verifyMessage").style.display = "none";
   document.getElementById("introGif").onclick = null;
 
@@ -1019,8 +1019,6 @@ document.getElementById("verifyMessage").style.display = "none";
     document.body.appendChild(item);
 
   }
-
-}
   }
 </script>
 

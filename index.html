@@ -735,31 +735,28 @@ document.addEventListener("click", function(e) {
   } else {
     letter.style.display = "block";
 
-const openedIcons = ["💖","🌸","💌","🩷","✨"];
-icon.textContent =
-  openedIcons[Math.floor(Math.random() * openedIcons.length)];
+    const openedIcons = ["💖","🌸","💌","🩷","✨"];
+    icon.textContent =
+      openedIcons[Math.floor(Math.random() * openedIcons.length)];
 
-hint.textContent = "💖 You've opened this little note.";
+    hint.textContent = "💖 You've opened this little note.";
 
-// Spark effect
-for (let i = 0; i < 12; i++) {
-  const spark = document.createElement("div");
-  spark.textContent = "✨";
+    for (let i = 0; i < 12; i++) {
+      const spark = document.createElement("div");
+      spark.textContent = "✨";
 
-  spark.style.position = "fixed";
-  spark.style.left = Math.random() * window.innerWidth + "px";
-  spark.style.top = Math.random() * window.innerHeight + "px";
-  spark.style.fontSize = "14px";
-  spark.style.pointerEvents = "none";
-  spark.style.animation = "fadeStar 1s forwards";
+      spark.style.position = "fixed";
+      spark.style.left = Math.random() * window.innerWidth + "px";
+      spark.style.top = Math.random() * window.innerHeight + "px";
+      spark.style.fontSize = "14px";
+      spark.style.pointerEvents = "none";
+      spark.style.animation = "fadeStar 1s forwards";
 
-  document.body.appendChild(spark);
+      document.body.appendChild(spark);
 
-  setTimeout(() => {
-    spark.remove();
-  }, 1000);
-}
-  const audio = document.getElementById("audio");
+      setTimeout(() => spark.remove(), 1000);
+    }
+    const audio = document.getElementById("audio");
 const album = document.getElementById("album");
 
 function toggleMusic() {
@@ -770,7 +767,7 @@ function toggleMusic() {
     audio.pause();
     album.style.animationPlayState = "paused";
   }
-    }
+}
   }
 </script>
 

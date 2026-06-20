@@ -746,17 +746,19 @@ hint.textContent = "💖 You've opened this little note.";
 for (let i = 0; i < 12; i++) {
   const spark = document.createElement("div");
   spark.textContent = "✨";
+
   spark.style.position = "fixed";
   spark.style.left = Math.random() * window.innerWidth + "px";
   spark.style.top = Math.random() * window.innerHeight + "px";
   spark.style.fontSize = "14px";
-  spark.style.opacity = "1";
   spark.style.pointerEvents = "none";
   spark.style.animation = "fadeStar 1s forwards";
 
   document.body.appendChild(spark);
 
-  setTimeout(() => spark.remove(), 1000);
+  setTimeout(() => {
+    spark.remove();
+  }, 1000);
 }
   <script>
 const audio = document.getElementById("audio");

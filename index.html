@@ -977,6 +977,7 @@ document.addEventListener("click", function(e) {
 }
   
   let treatsLeft = 10;
+
 function feedDog() {
   document.getElementById("pawBtn").style.display = "none";
   document.getElementById("feedText").style.display = "block";
@@ -986,51 +987,32 @@ function feedDog() {
 
   for (let i = 0; i < treatsLeft; i++) {
     const item = document.createElement("div");
-    // ...
-    document.body.appendChild(item);
-  }
-}
-    const item=document.createElement("div");
 
-    item.className="treat";
+    item.className = "treat";
+    item.textContent = foods[Math.floor(Math.random() * foods.length)];
 
-    item.textContent=
-      foods[Math.floor(Math.random()*foods.length)];
+    item.style.left = Math.random() * 80 + 10 + "vw";
+    item.style.top = Math.random() * 70 + 15 + "vh";
 
-    item.style.left=Math.random()*80+10+"vw";
-    item.style.top=Math.random()*70+15+"vh";
-
-    item.onclick=function(){
-
+    item.onclick = function () {
       item.remove();
-
       treatsLeft--;
 
-      if(treatsLeft===0){
+      if (treatsLeft === 0) {
+        document.getElementById("verifyMessage").style.display = "block";
 
-        document.getElementById("verifyMessage").style.display="block";
-
-        setTimeout(()=>{
-
-          document.getElementById("introOverlay").style.display="none";
-
-          document.getElementById("letterPage").style.display="flex";
-
+        setTimeout(() => {
+          document.getElementById("introOverlay").style.display = "none";
+          document.getElementById("letterPage").style.display = "flex";
           showPage();
-
-          treatsLeft=10;
-
-        },1800);
-
+          treatsLeft = 10;
+        }, 1800);
       }
-
     };
 
     document.body.appendChild(item);
-
-  } // end of for loop
-
-} // <-- idagdag ito para isara ang function
+  }
+    }
 
 </script>
 

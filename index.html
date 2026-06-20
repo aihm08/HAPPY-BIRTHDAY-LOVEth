@@ -441,38 +441,73 @@ Each envelope holds a little note just for you. ♡
 </div>
 `,
 `
-<hr>
 
-<h3 onclick="toggleMessage('secret')" style="cursor:pointer;">
-🔒 Secret Note (Tap me)
-</h3>
-<div id="secret" style="display:none; margin-top:20px;">
+<div style="
+  width:280px;
+  margin-top:20px;
+  padding:20px;
+  border-radius:15px;
+  background:rgba(0,0,0,0.05);
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+">
 
-<p style="font-size:12px; opacity:0.7;">
-You found the hidden message...
-</p>
+<!-- Album Cover -->
+<img id="album"
+     src="your-image.jpg"
+     style="
+        width:140px;
+        height:140px;
+        border-radius:50%;
+        object-fit:cover;
+        animation:spin 4s linear infinite;
+        animation-play-state:paused;
+        box-shadow:0 10px 20px rgba(0,0,0,0.3);
+     ">
 
-<p>
-If you're reading this love, it means you stayed until the very end. Good boy and
-thank you for taking the time to read every word I wrote love. mwa!!
-</p>
+<h4 style="margin-top:15px;">💿 Love Recording</h4>
+<p style="font-size:12px; opacity:0.7;">Tap play to listen...</p>
 
-<p>
-I hope this little gift made you smile, Happy birthday my love and
-No matter what happens, I hope you always remember that someone out there is genuinely cheering you on and wishing for your happiness. 🙏
-</p>
-
-<p style="font-style:italic;">
-"You are one of my favorite chapters, and I'm grateful our paths crossed." ♡
-</p>
-
-<p style="font-size:13px; opacity:0.7;">
-P.S. You weren't supposed to find this so quickly. 🤭
-</p>
+<!-- Controls -->
+<button onclick="toggleMusic()" style="
+  margin-top:10px;
+  padding:8px 15px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+  background:#ff5c8a;
+  color:white;
+">
+▶ Play / Pause
+</button>
 
 </div>
 
-</div>
+<audio id="audio" src="your-audio.mp3"></audio>
+
+<style>
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+</style>
+
+<script>
+let playing = false;
+
+function toggleMusic(){
+  const audio = document.getElementById("audio");
+  const album = document.getElementById("album");
+
+  if(!playing){
+    audio.play();
+    album.style.animationPlayState = "running";
+    playing = true;
+  } else {
+    audio.pause();
+    album.style.animationPlayState = "paused";
+    playing = false;
+  }
 `,
 
 `

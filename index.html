@@ -721,13 +721,11 @@ for (let i = 0; i < 12; i++) {
     (window.innerHeight / 2 + (Math.random() * 120 - 60)) + "px";
   spark.style.fontSize = "20px";
   spark.style.animation = "fadeStar 1s forwards";
+document.body.appendChild(spark);
 
-  document.body.appendChild(spark);
-
-  setTimeout(() => {
-    spark.remove();
-  }, 1000);
-}
+setTimeout(() => {
+  spark.remove();
+}, 1000);
   }
   }
 </script>
